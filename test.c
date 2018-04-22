@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Fichier de test pour tester github*/
+/Fichier de test pour tester github*/
 //Demarche pour git
 /* git clone https://github.com/..... !!!! à faire une seule fois
 
@@ -11,7 +11,10 @@ git pull     récupérer les fichiers à jour de github (à faire à chaque fois
 
 
 git add *.c           ajoute les fichier .c au projet (évites d'ajouter les .e)
-git commit -m "message decrivant le commit"     fait la mise à jour des fichiers
+git commit -m "message decrivant le commit"     fait la mise à jour des fichiers (sauvegarde)
+!!!!
+on peut aussi faire pour ces deux précedentes commandes si les fichiers on déjà été ajouté :
+git commit -a -m "message"
 git push              partage le fichier sur github 
 
 faire ces 3 commandes à la suite 
