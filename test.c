@@ -7,6 +7,13 @@
 
 Se mettre dans le bon répertoire
 
+Commandes pour
+
+git config --global user.email "Vous@exemple.com"
+git config --global user.name "Votre Nom"
+
+git status    connaitre l'etat du git
+
 git pull     récupérer les fichiers à jour de github (à faire à chaque fois)
 
 
