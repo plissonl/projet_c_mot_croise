@@ -11,9 +11,9 @@ all: $(PROG)
 
 
 #  ́etapes de compilation et d’ ́edition de liens
-
+# $@ la cible $^ toutes les dependances
 $(PROG): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^	$(LDFLAGS) # $@ la cible $^ toutes les dependances
+	$(CC) $(CFLAGS) -o $@ $^	$(LDFLAGS) 
 
 callbacks.o: callbacks.h data.h
 data.o: data.h
@@ -21,8 +21,9 @@ conv.o: data.h callbacks.h
 
 
 # le lien entre .o et .c
+# $< derniere dependance
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<	# $< derniere dependance
+	$(CC) $(CFLAGS) -c $<	
 
 
 # pour faire propre
