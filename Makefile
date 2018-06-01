@@ -1,27 +1,28 @@
-CC = gcc	# le compilateur `a utiliser
-CFLAGS = -Wall	# les options du compilateur
-LDFLAGS =	# les options pour l’ ́editeur de liens
-SRC = cal.c pile.cal# les fichiers sources
-PROG = clean# nom de l’ex ́ecutable
-OBJS =  $(SRC:.c=.o)	# les .o qui en d ́ecoulent
+CC = gcc				# le compilateur `a utiliser
+CFLAGS = -ansi -Wall	# les options du compilateur
+LDFLAGS = -lsx			# les options pour l’editeur de liens
+SRC = conv.c callbacks.c data.c # les fichiers sources
+PROG = conv				# nom de l’executable
+OBJS =  $(SRC:.c=.o)	# les .o qui en decoulent
+.SUFFIXES: .c .o 		# lien entre les suffixes
 
-.SUFFIXES: .c .options# lien entre les suffixes
+
 all: $(PROG)
 
 
 #  ́etapes de compilation et d’ ́edition de liens
 
 $(PROG): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^	# $@ la cible $^ toutes les d ́ependances
+	$(CC) $(CFLAGS) -o $@ $^	$(LDFLAGS) # $@ la cible $^ toutes les dependances
 
-cal.o: pile.h
-
-pile.o: pile.h
+callbacks.o: callbacks.h data.h
+data.o: data.h
+conv.o: data.h callbacks.h
 
 
 # le lien entre .o et .c
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<	# $< derni`ere d ́ependance
+	$(CC) $(CFLAGS) -c $<	# $< derniere dependance
 
 
 # pour faire propre

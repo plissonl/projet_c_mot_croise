@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/Fichier de test pour tester github*/
+/*Fichier de test pour tester github*/
+
 //Demarche pour git
 /* git clone https://github.com/..... !!!! à faire une seule fois
 
