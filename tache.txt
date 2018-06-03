@@ -3,13 +3,20 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 - Matrice de donnée
 	-réfléchir à la structure utilisée
-		- char lettre (déja converti en majuscule ?) ( 0 si case noir ?)
+		- char lettre (déja converti en majuscule ?) ( ' ' si case noire )
 		- coordonnées en pixels ou juste i,j (vraiment utiles ?)
 		- d'autres idées genre pointeur vers matrice de vérif ? (pas très utile)
 		- idées ?
-- creer fichier données initiale
+	-> Decision prise 1 matrice de char matrice_joueur qui s'initialise en lisant une matrice matrice_résultat (char espace ' ' ie case noire non modifiable ; char '0' ie case vide modifiable)
+
+
+
+
+
+- creer fichier données initiale  (0 si rien, ' 'si case noire)
 - creer matrice résultat
 - afficher les définitions, les numéros de lignes, de colonnes, les cases noires.  (makeTextWidget pour les definitions)
+	-> fichier definition = definition5.txt
 - Bouton quitter (ajout d'une option ếtes vous sur ? (popups.doc))
 - Bouton sauvegarder ?
 	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
@@ -22,3 +29,11 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 - griser la case selectionné par l'utilisateur
 
 - faire en sorte que même si on agrandit l'image, la grille rest une grille, tout reste jouable .
+
+- eviter de laisser toucher les cases noires
+
+
+- permettre le choix de plusieurs grilles (au moins trois)
+	-lecture aléatoire entre trois fichier
+	-int aléatoire entre 1 et nb fichier possible
+	-switch case qui dit, nomFichier="grille5.txt"

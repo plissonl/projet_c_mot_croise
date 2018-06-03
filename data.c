@@ -3,6 +3,7 @@
 
 
 
+
 void init_display(int argc ,char **argv, void *d){
 	Widget Zone_grille, boutonQuitter;
 	Zone_grille=MakeDrawArea(LARGEUR,HAUTEUR, redisplay,NULL); 

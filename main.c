@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include <libsx.h>
 #include "data.h"
-
-
-
+#include "callbacks.h"
 
 
 int main (int argc ,char **argv) {
