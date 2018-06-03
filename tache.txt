@@ -2,7 +2,18 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 
 - Matrice de donnée
+	-réfléchir à la structure utilisée
+		- char lettre (déja converti en majuscule ?) ( 0 si case noir ?)
+		- coordonnées en pixels ou juste i,j (vraiment utiles ?)
+		- d'autres idées genre pointeur vers matrice de vérif ? (pas très utile)
+		- idées ?
+
 - Bouton quitter
 - Bouton sauvegarder ?
 	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
 - Bonton effacer case ou bonton retour en arrière (indispensable un des deux)
+- creer une fonction qui fait que quand on tape sur une case, on n'a pas besoin de cliquer sur la case suivante
+	-reflechir à un moyen de choisir que la case suivante est vers le bas ou vers le haut
+-Fonction qui empeche d'ecrire autre chose qu'une lettre (isalpha)
+-Fonction qui converti toute lettre écrite en minuscule en lettre majuscule (déjà présent das un TD)
+
