@@ -1,8 +1,8 @@
 CC = gcc				# le compilateur `a utiliser
 CFLAGS = -ansi -Wall	# les options du compilateur
 LDFLAGS = -lsx			# les options pour l’editeur de liens
-SRC = conv.c callbacks.c data.c # les fichiers sources
-PROG = conv				# nom de l’executable
+SRC = main.c callbacks.c data.c # les fichiers sources
+PROG = interface				# nom de l’executable
 OBJS =  $(SRC:.c=.o)	# les .o qui en decoulent
 .SUFFIXES: .c .o 		# lien entre les suffixes
 
@@ -17,7 +17,7 @@ $(PROG): $(OBJS)
 
 callbacks.o: callbacks.h data.h
 data.o: data.h
-conv.o: data.h callbacks.h
+main.o: data.h callbacks.h
 
 
 # le lien entre .o et .c
