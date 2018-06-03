@@ -8,11 +8,11 @@
 
 
 void  redisplay(Widget w, int width, int height, void *data){
-	int nb_ligne=10.
-	int pas=600/nb_ligne;
-	for(int i=0;i<nb_ligne;i++){
 
+	int pas_ligne=LARGEUR/NB_LIGNES;
+	for(int i=0;i<NB_LIGNES;i++){
+		DrawLine( i*pas_ligne,0,i*pas_ligne,LARGEUR);
 
-		DrawLine( i*pas, int 0, int i*pas, int 600);
 		}}
+	
 		 

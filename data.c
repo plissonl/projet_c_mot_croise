@@ -8,10 +8,9 @@
 
 
 void init_display(int argc ,char **argv, void *d){
-	Widget quitter,text,euros;
-	int largeur,longueur=600,600;
-
-	zone=MakeDrawArea(largeur,longueur, NULL,NULL); 
+	Widget zone;
+	
+	zone=MakeDrawArea(LARGEUR,HAUTEUR,redisplay,NULL); 
 	
 
 
