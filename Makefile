@@ -1,10 +1,10 @@
-CC = gcc				# le compilateur `a utiliser
-CFLAGS = -Wall	# les options du compilateur
-LDFLAGS = -lsx			# les options pour l’editeur de liens
+CC = gcc					# le compilateur `a utiliser
+CFLAGS = -std=gnu99 -Wall	# les options du compilateur
+LDFLAGS = -lsx				# les options pour l’editeur de liens
 SRC = main.c callbacks.c data.c # les fichiers sources
 PROG = interface				# nom de l’executable
-OBJS =  $(SRC:.c=.o)	# les .o qui en decoulent
-.SUFFIXES: .c .o 		# lien entre les suffixes
+OBJS =  $(SRC:.c=.o)		# les .o qui en decoulent
+.SUFFIXES: .c .o 			# lien entre les suffixes
 
 
 all: $(PROG)
