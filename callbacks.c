@@ -14,15 +14,13 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 	for(int i=0;i<NB_LIGNES;i++){
 		DrawLine( i*pas_ligne,0,i*pas_ligne,LARGEUR);
 	}
-
-
-
-		
+	
 	for(int i=0;i<NB_COLONNE;i++){
 		DrawLine(0,i*pas_colonne,HAUTEUR,i*pas_colonne);
 
 	}
 }
+
 
 
 void  clique(Widget w,int a,int x,int y,void *data){
@@ -40,6 +38,8 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *data){
 		DrawText(input,x_milieu,y_milieu); 
 	}
 }
+
+
 
 
 
