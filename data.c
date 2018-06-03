@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <libsx.h>
 #include "callbacks.h"
 #include "data.h"
 

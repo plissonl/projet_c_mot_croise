@@ -21,4 +21,4 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 - griser la case selectionné par l'utilisateur
 
-- faire en sorte que mêm si on agrandit l'image, la grille rest une grille, tout reste jouable .
+- faire en sorte que même si on agrandit l'image, la grille rest une grille, tout reste jouable .
