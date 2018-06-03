@@ -1,0 +1,8 @@
+Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou faite à coté)
+
+
+- Matrice de donnée
+- Bouton quitter
+- Bouton sauvegarder ?
+	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
+- Bonton effacer case ou bonton retour en arrière (indispensable un des deux)
