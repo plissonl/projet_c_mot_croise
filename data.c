@@ -4,17 +4,20 @@
 #include "callbacks.h"
 # include"data.h"
 
+#define LARGEUR 600
+#define HAUTEUR 600
 
 
 
 void init_display(int argc ,char **argv, void *d){
-	Widget quitter,text,euros;
-	int largeur,longueur=600,600;
+	Widget Zone_grille;
 
-	zone=MakeDrawArea(largeur,longueur, NULL,NULL); 
+	Zone_grille=MakeDrawArea(LARGEUR,HAUTEUR, NULL,NULL); 
 	
 
 
+	GetStandardColors();
+	ShowDisplay();
 
 }
 

@@ -1,5 +1,5 @@
 CC = gcc				# le compilateur `a utiliser
-CFLAGS = -ansi -Wall	# les options du compilateur
+CFLAGS = -Wall	# les options du compilateur
 LDFLAGS = -lsx			# les options pour l’editeur de liens
 SRC = main.c callbacks.c data.c # les fichiers sources
 PROG = interface				# nom de l’executable
