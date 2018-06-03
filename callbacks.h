@@ -2,10 +2,14 @@
 #include<stdio.h>
 # define NB_LIGNES 10
 #define NB_COLONNE 10
-#define LARGEUR 300
-#define HAUTEUR 300
+#define LARGEUR 600
+#define HAUTEUR 600
 
 void  redisplay(Widget w, int width, int height, void *data);
 void  clique(Widget w,int a,int x,int y,void *data);
 void rentrer_caractere(Widget w,char *input,int up_or_down, void *data);
 
+/* Callback bouton quit
+	Role : terminer l'application
+*/
+extern void quit (Widget w, void *d);

@@ -39,7 +39,9 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *data){
 	}
 }
 
-
+void quit (Widget w, void *d) {
+	exit(EXIT_SUCCESS);
+}
 
 
 
