@@ -13,6 +13,10 @@ void init_display(int argc ,char **argv, void *d){
 	
 	GetStandardColors();
 	ShowDisplay();
+	SetButtonDownCB(Zone_grille,clique); 
+	SetKeypressCB(Zone_grille,rentrer_caractere); 
+
+
 
 }
 
