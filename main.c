@@ -18,6 +18,7 @@ int main (int argc ,char **argv) {
 
 
 	init_matrice_resultat(data);
+	init_matrice_joueur(data);
 	init_display(argc , argv , data);
 	
 	afficherGrille(NB_COLONNES,data->matrice_resultat);

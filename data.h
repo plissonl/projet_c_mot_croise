@@ -18,7 +18,7 @@ typedef struct{
 
 
 extern void init_display(int argc ,char **argv, char *d);
-extern void init_matrice_joueur(int n,int m,char mat_reponse[n][m],char mat_joueur[n][m]);
+extern void init_matrice_joueur(ValeurCourante *data);
 
 
 
