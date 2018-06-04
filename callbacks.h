@@ -4,8 +4,8 @@
 #include<stdio.h>
 #include<libsx.h>
 
-# define NB_LIGNES 10
-#define NB_COLONNE 10
+# define NB_LIGNES 12
+#define NB_COLONNES 12
 #define LARGEUR 600
 #define HAUTEUR 600
 

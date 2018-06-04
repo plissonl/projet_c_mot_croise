@@ -3,7 +3,7 @@
 
 int abscisse,ordonnee;
 int pas_ligne=LARGEUR/NB_LIGNES;
-int pas_colonne=HAUTEUR/NB_COLONNE;
+int pas_colonne=HAUTEUR/NB_COLONNES;
 
 
 void  redisplay(Widget w, int width, int height, char *data){ // fcontion  
@@ -15,7 +15,7 @@ void  redisplay(Widget w, int width, int height, char *data){ // fcontion
 		DrawLine( i*pas_ligne,0,i*pas_ligne,LARGEUR);
 	}
 	
-	for(int i=0;i<NB_COLONNE;i++){
+	for(int i=0;i<NB_COLONNES;i++){
 		DrawLine(0,i*pas_colonne,HAUTEUR,i*pas_colonne);
 
 	}
