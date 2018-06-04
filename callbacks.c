@@ -3,7 +3,7 @@
 
 #include <ctype.h>
 
-
+// Il faut ajouter +pas ligne et +pas colonne à chaque truc utilisant i ou j ou trouver un moyen de le faire automatiquement.
 
 int abscisse,ordonnee; // on peut faire une structure coordonnées
 
@@ -24,12 +24,23 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 		}
 	} 
 	
-	for(int i=0;i<NB_LIGNES;i++){
-		DrawLine( i*pas_ligne,0,i*pas_ligne,LARGEUR);
+	for(int i=0;i<NB_LIGNES+1;i++){
+		DrawLine( i*pas_ligne+pas_ligne,pas_ligne,i*pas_ligne+pas_ligne,LARGEUR+pas_ligne);
 	}
 	
-	for(int i=0;i<NB_COLONNES;i++){
-		DrawLine(0,i*pas_colonne,HAUTEUR,i*pas_colonne);
+	for(int i=0;i<NB_COLONNES+1;i++){
+		DrawLine(pas_colonne,i*pas_colonne+pas_colonne,HAUTEUR+pas_colonne,i*pas_colonne+pas_colonne);
+
+	}
+	for(int num_ligne=1; num_ligne<NB_LIGNES+1;num_ligne++) {
+		char numl[3];
+		sprintf(numl,"%d",num_ligne);
+		DrawText(numl,(num_ligne+1)*pas_ligne-pas_ligne/2,pas_colonne/2);
+	}
+	for(int num_colonne=1; num_colonne<NB_COLONNES+1;num_colonne++) {
+		char numc[3];
+		sprintf(numc,"%d",num_colonne);
+		DrawText(numc,pas_ligne/2,(num_colonne+1)*pas_colonne-pas_colonne/2);
 
 	}
 }
@@ -90,14 +101,4 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 void quit (Widget w, void *d) {
 	exit(EXIT_SUCCESS);
 }
-
-
-
-
-
-
-
-
-
-
 

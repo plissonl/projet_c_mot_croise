@@ -39,4 +39,5 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 	-switch case qui dit, nomFichier="grille5.txt"
 
 Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
+Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/
 

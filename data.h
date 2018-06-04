@@ -26,7 +26,7 @@ extern void init_matrice_joueur(ValeurCourante *data);
 
 
 
-/* Procédure initialisant la matrice appelée matrice_resultat */
+/* Procédure initialisant la matrice appelée matrice_resultat et choisissant le fichier utilisé*/
 extern void init_matrice_resultat(ValeurCourante *data);
 
 void afficherGrille(int taille,char mat[][taille]); //affichage de test
