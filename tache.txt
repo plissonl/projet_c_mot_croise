@@ -8,7 +8,7 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 		- d'autres idées genre pointeur vers matrice de vérif ? (pas très utile)
 		- idées ?
 	-> Decision prise 1 matrice de char matrice_joueur qui s'initialise en lisant une matrice matrice_résultat (char espace ' ' ie case noire non modifiable ; char '0' ie case vide modifiable)
-	-> matrice_résultat faite (reste à créer d'autres fichier grilles et creer une fonction qui choisi aléatoirement)
+0	-> matrice_résultat faite (reste à créer d'autres fichier grilles et creer une fonction qui choisi aléatoirement)
 
 
 
