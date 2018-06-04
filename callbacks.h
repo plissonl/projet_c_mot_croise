@@ -10,7 +10,9 @@
 #define LARGEUR 600
 #define HAUTEUR 600
 
-void  redisplay(Widget w, int width, int height, void *data);
+
+void  redisplay(Widget w, int width, int height,void *d);
+
 void  clique(Widget w,int a,int x,int y,void *data);
 void rentrer_caractere(Widget w,char *input,int up_or_down, void *data);
 

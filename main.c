@@ -22,6 +22,7 @@ int main (int argc ,char **argv) {
 	init_display(argc , argv , data);
 	
 	afficherGrille(NB_COLONNES,data->matrice_resultat);
+	afficherGrille(NB_COLONNES,data->matrice_joueur);
 
 	MainLoop ();
 	free(data);

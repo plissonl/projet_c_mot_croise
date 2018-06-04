@@ -73,7 +73,10 @@ void init_matrice_joueur(ValeurCourante *data){
 
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
-			if(data->matrice_joueur[i][j]==' '){
+
+
+			if(data->matrice_resultat[i][j]==' '){
+
 				data->matrice_joueur[i][j]=' ';
 
 			}

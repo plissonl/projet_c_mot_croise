@@ -6,11 +6,13 @@ int pas_ligne=LARGEUR/NB_LIGNES;
 int pas_colonne=HAUTEUR/NB_COLONNES;
 
 
+
 void  redisplay(Widget w, int width, int height, void *d){ // fcontion 
 	ValeurCourante *data=d;
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
-			if(data->matrice_joueur[i][j]=' '){
+			if(data->matrice_joueur[i][j]==' '){
+
 				DrawFilledBox(i*pas_ligne,j*pas_colonne,pas_ligne,pas_colonne);
 			} 
 		}
