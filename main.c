@@ -6,6 +6,7 @@
 
 
 int main (int argc ,char **argv) {
+
 	ValeurCourante *data;
 	data=malloc(sizeof(ValeurCourante));
 
@@ -15,10 +16,12 @@ int main (int argc ,char **argv) {
 		return EXIT_FAILURE;
 	}
 
+
 	init_matrice_resultat(data);
-	init_display(argc , argv , NULL);
+	init_display(argc , argv , data);
 	
 	afficherGrille(NB_COLONNES,data->matrice_resultat);
+
 	MainLoop ();
 	free(data);
 	return EXIT_SUCCESS;

@@ -4,16 +4,24 @@
 #include<stdio.h>
 #include<libsx.h>
 #include<ctype.h>
+
 #include "callbacks.h"
 
-typedef struct {
-	char matrice_resultat[NB_LIGNES][NB_COLONNES];
+
+typedef struct{
 	char matrice_joueur[NB_LIGNES][NB_COLONNES];
-	int numFichier;
-} ValeurCourante;
+	char matrice_resultat[NB_LIGNES][NB_COLONNES];
+	int numFichier
+}ValeurCourante;
 
 
-extern void init_display(int argc ,char **argv, void *d);
+
+
+extern void init_display(int argc ,char **argv, char *d);
+extern void init_matrice_joueur(int n,int m,char mat_reponse[n][m],char mat_joueur[n][m]);
+
+
+
 
 /* Procédure initialisant la matrice appelée matrice_resultat */
 extern void init_matrice_resultat(ValeurCourante *d);
