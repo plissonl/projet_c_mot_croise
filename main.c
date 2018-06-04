@@ -25,6 +25,8 @@ int main (int argc ,char **argv) {
 	afficherGrille(NB_COLONNES,data->matrice_joueur);
 
 	MainLoop ();
+	afficherGrille(NB_COLONNES,data->matrice_joueur);
 	free(data);
+
 	return EXIT_SUCCESS;
 }
