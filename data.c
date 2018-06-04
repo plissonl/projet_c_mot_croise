@@ -68,17 +68,17 @@ void init_display(int argc ,char **argv, void *d){
 }
 
 
-void init_matrice_joueur(Valeur_courante *data){
+void init_matrice_joueur(ValeurCourante *data){
 
 
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
-			if(data->mat_reponse[i][j]==' '){
-				data->mat_joueur[i][j]=' ';
+			if(data->matrice_joueur[i][j]==' '){
+				data->matrice_joueur[i][j]=' ';
 
 			}
 			else 
-				data->mat_joueur[i][j]='0';
+				data->matrice_joueur[i][j]='0';
 
 		}
 	}

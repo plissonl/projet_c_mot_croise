@@ -11,13 +11,13 @@
 typedef struct{
 	char matrice_joueur[NB_LIGNES][NB_COLONNES];
 	char matrice_resultat[NB_LIGNES][NB_COLONNES];
-	int numFichier
-}ValeurCourante;
+	int numFichier;
+} ValeurCourante;
 
 
 
 
-extern void init_display(int argc ,char **argv, char *d);
+extern void init_display(int argc ,char **argv, void *d);
 extern void init_matrice_joueur(ValeurCourante *data);
 
 
