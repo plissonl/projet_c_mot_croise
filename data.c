@@ -53,9 +53,9 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 void init_display(int argc ,char **argv, ValeurCourante *d){
 	Widget Zone_grille, boutonQuitter, ZoneDefinitions;
 	Zone_grille=MakeDrawArea(LARGEUR,HAUTEUR, redisplay,d); 
-
 	boutonQuitter = MakeButton ("Quit", quit, NULL);
 	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
+	
 	SetWidgetPos (boutonQuitter, PLACE_UNDER, Zone_grille, NO_CARE, NULL);
 	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
 	SetButtonDownCB(Zone_grille,clique); 
