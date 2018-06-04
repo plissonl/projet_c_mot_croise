@@ -6,7 +6,10 @@ int pas_ligne=LARGEUR/NB_LIGNES;
 int pas_colonne=HAUTEUR/NB_COLONNE;
 
 
-void  redisplay(Widget w, int width, int height, void *data){ // fcontion  
+void  redisplay(Widget w, int width, int height, char *data){ // fcontion  
+	if(*data==' '){
+		DrawFilledBox(0,0,30,30); 
+	}
 
 	for(int i=0;i<NB_LIGNES;i++){
 		DrawLine( i*pas_ligne,0,i*pas_ligne,LARGEUR);
