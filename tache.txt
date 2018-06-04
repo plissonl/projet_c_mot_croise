@@ -13,9 +13,9 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 
 
-- creer fichier données initiale  (0 si rien, ' 'si case noire)
-- creer matrice résultat
-- afficher les définitions, les numéros de lignes, de colonnes, les cases noires.  (makeTextWidget pour les definitions)
+0- creer fichier données initiale  (0 si rien, ' 'si case noire)
+0- creer matrice résultat
+- 0afficher les définitions, les numéros de lignes, de colonnes, 0les cases noires.  (makeTextWidget pour les definitions) makelabel pour les règles
 	-> fichier definition = definition5.txt
 - Bouton quitter (ajout d'une option ếtes vous sur ? (popups.doc))
 - Bouton sauvegarder ?
@@ -37,3 +37,6 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 	-lecture aléatoire entre trois fichier
 	-int aléatoire entre 1 et nb fichier possible
 	-switch case qui dit, nomFichier="grille5.txt"
+
+Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
+

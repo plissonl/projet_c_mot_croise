@@ -5,18 +5,17 @@
 /* Procédure initialisant la matrice appelée matrice_resultat */
 void init_matrice_resultat(ValeurCourante *d) {
 	FILE *fichier;
-	char * NomFichier;
-	d->numFichier =1;
+	int numFichier =1;
 	int i=0 ,j=0;
 	int c;
 	//faire aléatoire numFichier
-	switch(d->numFichier) {  // choix aléatoire de la grille de lecture
-		case 1 : NomFichier="grille1.txt"; break;
-		case 2 : NomFichier="grille2.txt"; break;
-		case 3 : NomFichier="grille3.txt"; break;
+	switch(numFichier) {  // choix aléatoire de la grille de lecture
+		case 1 : d->NomGrille="grille1.txt"; d->NomDefinitions="definitions1.txt"; break;
+		case 2 : d->NomGrille="grille2.txt"; d->NomDefinitions="definitions2.txt"; break;
+		case 3 : d->NomGrille="grille3.txt"; d->NomDefinitions="definitions3.txt"; break;
 	}
-	if ((fichier=fopen(NomFichier,"r"))==NULL) {  //ouverture du fichier
-		perror(NomFichier);
+	if ((fichier=fopen(d->NomGrille,"r"))==NULL) {  //ouverture du fichier
+		perror(d->NomGrille);
 		exit(1);
 	}
 	while ((c=fgetc(fichier))!=EOF) { //lecture du caractère
@@ -51,14 +50,14 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 
 
 
-void init_display(int argc ,char **argv, void *d){
+void init_display(int argc ,char **argv, ValeurCourante *d){
 	Widget Zone_grille, boutonQuitter, ZoneDefinitions;
 	Zone_grille=MakeDrawArea(LARGEUR,HAUTEUR, redisplay,d); 
-
 	boutonQuitter = MakeButton ("Quit", quit, NULL);
-	//ZoneDefinitions = MakeStringEntry
+	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
+	
 	SetWidgetPos (boutonQuitter, PLACE_UNDER, Zone_grille, NO_CARE, NULL);
-
+	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
 	SetButtonDownCB(Zone_grille,clique); 
 	SetKeypressCB(Zone_grille,rentrer_caractere); 
 	GetStandardColors();

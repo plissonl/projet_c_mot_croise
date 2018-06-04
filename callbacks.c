@@ -1,7 +1,12 @@
 #include "callbacks.h"
 #include "data.h"
+
 #include <ctype.h>
-int abscisse,ordonnee;
+
+
+
+int abscisse,ordonnee; // on peut faire une structure coordonnées
+
 int pas_ligne=LARGEUR/NB_LIGNES;
 int pas_colonne=HAUTEUR/NB_COLONNES;
 
