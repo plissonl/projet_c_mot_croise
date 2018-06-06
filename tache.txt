@@ -1,13 +1,13 @@
 Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou faite à coté)
 
 
-- Matrice de donnée
-	-réfléchir à la structure utilisée
-		- char lettre (déja converti en majuscule ?) ( ' ' si case noire )
-		- coordonnées en pixels ou juste i,j (vraiment utiles ?)
-		- d'autres idées genre pointeur vers matrice de vérif ? (pas très utile)
-		- idées ?
-	-> Decision prise 1 matrice de char matrice_joueur qui s'initialise en lisant une matrice matrice_résultat (char espace ' ' ie case noire non modifiable ; char '0' ie case vide modifiable)
+0- Matrice de donnée
+0	-réfléchir à la structure utilisée
+0		- char lettre (déja converti en majuscule ?) ( ' ' si case noire )
+0		- coordonnées en pixels ou juste i,j (vraiment utiles ?)
+0		- d'autres idées genre pointeur vers matrice de vérif ? (pas très utile)
+0		- idées ?
+0	-> Decision prise 1 matrice de char matrice_joueur qui s'initialise en lisant une matrice matrice_résultat (char espace ' ' ie case noire non modifiable ; char '0' ie case vide modifiable)
 0	-> matrice_résultat faite (reste à créer d'autres fichier grilles et creer une fonction qui choisi aléatoirement)
 
 
@@ -15,26 +15,26 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 0- creer fichier données initiale  (0 si rien, ' 'si case noire)
 0- creer matrice résultat
-- 0afficher les définitions, 0les numéros de lignes, 0de colonnes, 0les cases noires.  (makeTextWidget pour les definitions) 
+0- 0afficher les définitions, 0les numéros de lignes, 0de colonnes, 0les cases noires.  (makeTextWidget pour les definitions) 
 - makelabel pour les règles
-	-> fichier definition = definitions5.txt
-	-> fichier grille = grille5.txt
+0	-> fichier definition = definitions5.txt
+0	-> fichier grille = grille5.txt
 - Bouton quitter (ajout d'une option ếtes vous sur ? (popups.doc))
 - Bouton sauvegarder ?
 	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
 - Bonton effacer case ou bonton retour en arrière (indispensable un des deux)
-- creer une fonction qui fait que quand on tape sur une case, on n'a pas besoin de cliquer sur la case suivante
-	-reflechir à un moyen de choisir que la case suivante est vers le bas ou vers le haut
-- Fonction qui empeche d'ecrire autre chose qu'une lettre (isalpha)
-- Fonction qui converti toute lettre écrite en minuscule en lettre majuscule (déjà présent das un TD)
-- fonction qui selctionne en grisant la case
-- fonction qui fait que l'on selectionne la case courante avec les flèches si l'on veut
+0- creer une fonction qui fait que quand on tape sur une case, on n'a pas besoin de cliquer sur la case suivante
+0	-reflechir à un moyen de choisir que la case suivante est vers le bas ou vers le haut
+0- Fonction qui empeche d'ecrire autre chose qu'une lettre (isalpha)
+0- Fonction qui converti toute lettre écrite en minuscule en lettre majuscule (déjà présent das un TD)
+0- fonction qui selctionne en grisant la case
+0- fonction qui fait que l'on selectionne la case courante avec les flèches si l'on veut
 - fonction qui empêche d'aller hors de la grille et sur les cases noires
-- griser la case selectionné par l'utilisateur
+0- griser la case selectionné par l'utilisateur
 
-- 0faire en sorte que même si on agrandit l'image, la grille reste une grille, tout reste jouable .
+0- 0faire en sorte que même si on agrandit l'image, la grille reste une grille, tout reste jouable .
 
-- eviter de laisser toucher les cases noires
+0- eviter de laisser toucher les cases noires
 
 
 - permettre le choix de plusieurs grilles (au moins trois)
@@ -42,12 +42,21 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 	-int aléatoire entre 1 et nb fichier possible
 	-switch case qui dit, nomFichier="grille5.txt"
 
-
+- Booléen de sauvegarde faite laissant la popup si il est nul et que l'on quitte.
 
 - faire des structures propres plutôt que des variables globales
 
-- creer fonction initialisation fichier
+0- creer fonction initialisation fichier
 
 Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
 Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/
 
+- erreurs constatées
+	- deplacement fleche que si souris dans cadre
+	- case noire deselectionnées sans bord
+
+
+
+- Rédiger et afficher les règles
+
+- Fonction Supprimer à finir et optimiser

@@ -35,3 +35,5 @@ extern void init_matrice_joueur(ValeurCourante *data);
 extern void init_matrice_resultat(ValeurCourante *data);
 
 void afficherGrille(int taille,char mat[][taille]); //affichage de test
+
+void init_fichier(ValeurCourante *d);
