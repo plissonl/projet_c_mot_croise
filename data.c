@@ -62,6 +62,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 	SetKeypressCB(Zone_grille,rentrer_caractere); 
 	GetStandardColors();
 	ShowDisplay();
+	printf("hello\n");
 
 
 }

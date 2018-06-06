@@ -23,8 +23,10 @@ int main (int argc ,char **argv) {
 	
 	afficherGrille(NB_COLONNES,data->matrice_resultat);
 	afficherGrille(NB_COLONNES,data->matrice_joueur);
+	printf("hello1\n");
 
 	MainLoop ();
+	printf("hello2\n");
 	afficherGrille(NB_COLONNES,data->matrice_joueur);
 	free(data);
 
