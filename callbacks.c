@@ -16,15 +16,10 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 	ValeurCourante *data=d;
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
-<<<<<<< HEAD
+
 			if(data->matrice_joueur[j][i]==' '){
 				DrawFilledBox(i*pas_ligne,j*pas_colonne,pas_ligne,pas_colonne);
-=======
-			if(data->matrice_joueur[i][j]==' '){
-
-
-				DrawFilledBox(i*pas_ligne+pas_ligne,j*pas_colonne+pas_colonne,pas_ligne,pas_colonne);
->>>>>>> e2e2ae9f8a83db510477773d6ba4e5911700e9c2
+				
 			} 
 		}
 	} 
