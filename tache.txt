@@ -15,8 +15,10 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 0- creer fichier données initiale  (0 si rien, ' 'si case noire)
 0- creer matrice résultat
-- 0afficher les définitions, les numéros de lignes, de colonnes, 0les cases noires.  (makeTextWidget pour les definitions) makelabel pour les règles
-	-> fichier definition = definition5.txt
+- 0afficher les définitions, 0les numéros de lignes, 0de colonnes, 0les cases noires.  (makeTextWidget pour les definitions) 
+- makelabel pour les règles
+	-> fichier definition = definitions5.txt
+	-> fichier grille = grille5.txt
 - Bouton quitter (ajout d'une option ếtes vous sur ? (popups.doc))
 - Bouton sauvegarder ?
 	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
@@ -25,10 +27,12 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 	-reflechir à un moyen de choisir que la case suivante est vers le bas ou vers le haut
 - Fonction qui empeche d'ecrire autre chose qu'une lettre (isalpha)
 - Fonction qui converti toute lettre écrite en minuscule en lettre majuscule (déjà présent das un TD)
-
+- fonction qui selctionne en grisant la case
+- fonction qui fait que l'on selectionne la case courante avec les flèches si l'on veut
+- fonction qui empêche d'aller hors de la grille et sur les cases noires
 - griser la case selectionné par l'utilisateur
 
-- faire en sorte que même si on agrandit l'image, la grille reste une grille, tout reste jouable .
+- 0faire en sorte que même si on agrandit l'image, la grille reste une grille, tout reste jouable .
 
 - eviter de laisser toucher les cases noires
 
@@ -41,6 +45,8 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 
 - faire des structures propres plutôt que des variables globales
+
+- creer fonction initialisation fichier
 
 Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
 Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/

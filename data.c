@@ -1,19 +1,29 @@
 #include "callbacks.h"
 #include "data.h"
+#include <time.h>
 
 
-/* Procédure initialisant la matrice appelée matrice_resultat */
-void init_matrice_resultat(ValeurCourante *d) {
-	FILE *fichier;
-	int numFichier =1;
-	int i=0 ,j=0;
-	int c;
-	//faire aléatoire numFichier
+void init_fichier(ValeurCourante *d) {
+	int numFichier;
+	int num_min=1;
+	int num_max=1;
+	srand(time(NULL));
+	numFichier=rand()%(num_max+1-num_min)+num_min ; // on génère un entier aléatoire compris entre num_min et num_max.
 	switch(numFichier) {  // choix aléatoire de la grille de lecture
 		case 1 : d->NomGrille="grille1.txt"; d->NomDefinitions="definitions1.txt"; break;
 		case 2 : d->NomGrille="grille2.txt"; d->NomDefinitions="definitions2.txt"; break;
 		case 3 : d->NomGrille="grille3.txt"; d->NomDefinitions="definitions3.txt"; break;
 	}
+}
+
+
+
+/* Procédure initialisant la matrice appelée matrice_resultat */
+void init_matrice_resultat(ValeurCourante *d) {
+	FILE *fichier;
+	int i=0 ,j=0;
+	int c;
+	init_fichier(d);
 	if ((fichier=fopen(d->NomGrille,"r"))==NULL) {  //ouverture du fichier
 		perror(d->NomGrille);
 		exit(1);

@@ -19,7 +19,7 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 			if(data->matrice_joueur[i][j]==' '){
 
 
-				DrawFilledBox(i*pas_ligne,j*pas_colonne,pas_ligne,pas_colonne);
+				DrawFilledBox(i*pas_ligne+pas_ligne,j*pas_colonne+pas_colonne,pas_ligne,pas_colonne);
 			} 
 		}
 	} 
