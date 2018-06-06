@@ -84,13 +84,14 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 		DrawText(input,x_milieu,y_milieu);
 		data->matrice_joueur[abscisse][ordonnee]=*input;
 	}
-	if (up_or_down==1 && *(input)==8)// *(input)=='U' && *(input+1)=='p')
+/*	if (up_or_down==1 && *(input)==8)// *(input)=='U' && *(input+1)=='p')
 	{
 		DrawText(NULL,abscisse*pas_ligne,ordonnee*pas_colonne);
 	
 
 
 	}
+	*/
 
 	if(up_or_down==1 &&*input=='U' &&*(input+1)=='p'){
 		deSelectionner(abscisse,ordonnee);
