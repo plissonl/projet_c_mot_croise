@@ -135,7 +135,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 static void afficherErreur(void *d){
 	ValeurCourante *data=d;
 	char *lettreFausse=malloc(sizeof(char));
-	*lettreFausse=comparaisonResulat(data);
+	lettreFausse=comparaisonResulat(data);
 	
 	
 

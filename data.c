@@ -92,16 +92,21 @@ void setZoneVerification(Widget w, ValeurCourante *data){
 
 }
 
-char comparaisonResulat(ValeurCourante *data){
-	//char tableau_erreur[10];
+char *comparaisonResulat(ValeurCourante *data){
+	char tableau_erreur[10];
+	int compteur_lettre=0;
 	for(int i=0;i<NB_LIGNES;i++){
 		
-		for(int j=0;j<NB_COLONNES;j++){
+		for(int j=0;j<NB_COLONNES && data->matrice_joueur[i][j]!= ' ';j++){
 			if(data->matrice_joueur[i][j]!='0'){
 				if(data->matrice_joueur[i][j]!=data->matrice_resultat[i][j]){
-					data->lettre_fausse=data->matrice_joueur[i][j];
-					return data->lettre_fausse;
+					tableau_erreur[compteur_lettre]=data->matrice_joueur[i][j];
+					//return data->lettre_fausse;
+					compteur++;
+					
 				}
+				data->lettre_fausse=tableau_erreur;
+				return data->lettre_fausse;
 				else{
 					return '4';
 				}
