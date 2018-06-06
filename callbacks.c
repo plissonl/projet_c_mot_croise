@@ -48,13 +48,18 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 
 
 void selectionne(int j,int i){    // i et j représente les coordonéees matricielles
+	if(i>=1&& j>=1){	
 	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 	abscisse=j;
-	ordonnee=i;
 
+	ordonnee=i;
+	printf("%d %d\n",i,j);
+	}
 
 }
+
+
 
 void deSelectionner(int j,int i){
 	SetColor(WHITE);
@@ -83,7 +88,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 	if(up_or_down==1)
 	{
-		if(*input>=97 && *input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
+		if(*input>=97 && abscisse>1 && ordonnee >1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
 				{
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
@@ -92,7 +97,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 
 				}
-		else if (*input>=65 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
+		else if (*input>=65 && abscisse>1 && ordonnee>1 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
 				{
 					DrawText(input,x_milieu,y_milieu);
 					data->matrice_joueur[abscisse-1][ordonnee-1]=*input;
