@@ -62,7 +62,8 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 
 
 void init_display(int argc ,char **argv, ValeurCourante *d){
-	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier, ZoneDeVerification;
+	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier,ZoneDeVerification;
+	Zone_grille=MakeDrawArea(LARGEUR+LARGEUR/NB_LIGNES,HAUTEUR+HAUTEUR/NB_COLONNES, redisplay,d); 
 	boutonQuitter = MakeButton ("Quitter", quit, NULL);
 	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
 	ZoneDeVerification=MakeStringEntry(NULL,tailleZoneVerif,NULL,d);
