@@ -46,8 +46,12 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 
 - faire des structures propres plutôt que des variables globales
 
-- creer fonction initialisation fichier
+0- creer fonction initialisation fichier
 
 Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
 Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/
+
+- erreurs constatées
+	- deplacement fleche que si souris dans cadre
+	- case noire deselectionnées sans bord
 
