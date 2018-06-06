@@ -54,9 +54,23 @@ Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-
 - erreurs constatées
 	- deplacement fleche que si souris dans cadre
 	- case noire deselectionnées sans bord
+	- on ne peut plus écrire aux bordures
+	- les boutons n'apparaissent pas
 
 
 
 - Rédiger et afficher les règles
 
 - Fonction Supprimer à finir et optimiser
+
+grilles : http://scalion.free.fr/grilles.htm
+
+
+
+
+- adaptabilité nb lignes et colonnes
+	- mettre dans la structure
+	- les initialiser à chaque lecture du fichier (save ou grille)
+
+
+- pour la sauvegarde, peut être enregistrer donnée telle que nom grille, NB_LIGNES, ...

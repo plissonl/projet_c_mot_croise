@@ -189,3 +189,46 @@ void quit (Widget w, void *d) {
 	if(GetYesNo("Etes vous sur de vouloir quitter ?"))
 	exit(EXIT_SUCCESS);
 }
+
+
+void choix_grille1(Widget w, void *data) {
+	ValeurCourante *d=data;
+	d->NomGrille="grille1.txt";
+	d->NomDefinitions="definitions1.txt";
+	init_matrice_resultat(d);
+	init_matrice_joueur(d);
+}
+/*
+void choix_grille2(Widget w, void *data) {
+	ValeurCourante *d=data;
+	d->NomGrille="grille2.txt";
+	d->NomDefinitions="definitions2.txt";
+	init_matrice_resultat(d);
+	init_matrice_joueur(d);
+}
+
+void choix_grille3(Widget w, void *data) {
+	ValeurCourante *d=data;
+	d->NomGrille="grille3.txt";
+	d->NomDefinitions="definitions3.txt";
+	init_matrice_resultat(d);
+	init_matrice_joueur(d);
+}
+*/
+
+void sauvegarder(Widget w, void *data) {
+	FILE *fichier;
+	ValeurCourante *d=data;
+	if ((fichier=fopen("save.txt","w+"))==NULL) {  //ouverture du fichier en mode ecriture et lecture en effaçant le contenu au préalable
+		perror(d->NomGrille);
+		exit(1);
+	}
+	for (int i=0; i<NB_COLONNES ; i++) {
+		for (int j=0; j<NB_LIGNES ; j++) {
+			fputc(d->matrice_joueur[i][j],fichier);
+		}
+		fputc('\n',fichier);
+	}
+
+	fclose(fichier);
+}
