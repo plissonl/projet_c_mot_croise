@@ -38,6 +38,10 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 	-int aléatoire entre 1 et nb fichier possible
 	-switch case qui dit, nomFichier="grille5.txt"
 
+
+
+- faire des structures propres plutôt que des variables globales
+
 Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
 Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/
 
