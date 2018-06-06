@@ -119,9 +119,14 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 					deSelectionner(abscisse,ordonnee);
 					selectionne(abscisse,ordonnee+1);
 					break;
-				case 8: // touche backspace 
-					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse,ordonnee+1);
+				case 8: // touche backspace
+
+					*input=' ';
+					DrawText(input,x_milieu,y_milieu);
+					data->matrice_joueur[ordonnee-1][abscisse-1]='0';
+
+					//deSelectionner(abscisse,ordonnee);
+					//selectionne(abscisse,ordonnee+1);
 					break;
 				default:
 					printf("erreur sur l'entree standard\n "); // changer le message d'erreur en un widget
@@ -133,12 +138,13 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 }
 
 static void afficherErreur(void *d){
+	char lettreFausse;
 	ValeurCourante *data=d;
-	char *lettreFausse=malloc(sizeof(char));
+	//char *lettreFausse=malloc(sizeof(char));
 	lettreFausse=comparaisonResulat(data);
 	
-	SetStringEntry(data->ZoneDeVerification,lettreFausse);
-	free(lettreFausse);
+	SetStringEntry(data->ZoneDeVerification,&lettreFausse);
+	//free(lettreFausse);
 
 
 }
