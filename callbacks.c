@@ -19,7 +19,7 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 
 			if(data->matrice_joueur[j][i]==' '){
 				DrawFilledBox(i*pas_ligne,j*pas_colonne,pas_ligne,pas_colonne);
-				
+
 			} 
 		}
 	} 
@@ -124,12 +124,31 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 					selectionne(abscisse,ordonnee+1);
 					break;
 				default:
-					printf("erreur sur l'entree standard "); // changer le message d'erreur en un widget
+					printf("erreur sur l'entree standard\n "); // changer le message d'erreur en un widget
 					break;
 			}
 
 		}
 	}
+}
+
+static void afficherErreur(void *d){
+	ValeurCourante *data=d;
+	char *lettreFausse=malloc(sizeof(char));
+	*lettreFausse=comparaisonResulat(data);
+	
+	
+
+	SetStringEntry(data->ZoneDeVerification,lettreFausse);
+	free(lettreFausse);
+
+
+}
+
+void Verifier(Widget w,void *d){
+	afficherErreur(d);
+}
+
 
 
 /*
@@ -155,7 +174,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 		selectionne(abscisse,ordonnee-1);
 	}
 */
-}
+
 void quit (Widget w, void *d) {
 	exit(EXIT_SUCCESS);
 }

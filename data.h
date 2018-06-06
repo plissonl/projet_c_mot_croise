@@ -13,8 +13,13 @@ typedef struct{
 	char matrice_resultat[NB_LIGNES][NB_COLONNES];
 	char* NomGrille;
 	char* NomDefinitions;
+	char lettre_fausse;
+	Widget ZoneDeVerification;
 } ValeurCourante;
 
+
+extern void setZoneVerification(Widget w, ValeurCourante *data);
+extern char comparaisonResulat(ValeurCourante *data);
 
 
 

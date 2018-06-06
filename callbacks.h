@@ -20,3 +20,4 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *data);
 	Role : terminer l'application
 */
 extern void quit (Widget w, void *d);
+extern void Verifier(Widget w,void *d);
