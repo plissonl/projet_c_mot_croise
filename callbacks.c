@@ -18,7 +18,7 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 		for(int j=0;j<NB_COLONNES;j++){
 
 			if(data->matrice_joueur[j][i]==' '){
-				DrawFilledBox(i*pas_ligne+pas_ligne,j*pas_colonne+pas_colonne,pas_ligne,pas_colonne);
+				DrawFilledBox(i*pas_ligne+pas_ligne+2,j*pas_colonne+pas_colonne+2,pas_ligne-4,pas_colonne-4);
 
 			} 
 		}
@@ -47,19 +47,19 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 
 
 
-void selectionne(int x,int y){
-	DrawBox(x*pas_ligne+1,y*pas_colonne+1,pas_ligne-2,pas_colonne-2);
-	DrawBox(x*pas_ligne+2,y*pas_colonne+2,pas_ligne-4,pas_colonne-4);
-	abscisse=x;
-	ordonnee=y;
+void selectionne(int j,int i){    // i et j représente les coordonéees matricielles
+	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
+	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
+	abscisse=j;
+	ordonnee=i;
 
 
 }
 
-void deSelectionner(int x,int y){
+void deSelectionner(int j,int i){
 	SetColor(WHITE);
-	DrawBox(x*pas_ligne+1,y*pas_colonne+1,pas_ligne-2,pas_colonne-2);
-	DrawBox(x*pas_ligne+2,y*pas_colonne+2,pas_ligne-4,pas_colonne-4);
+	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
+	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 	SetColor(BLACK);
 }
 
@@ -83,19 +83,19 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 	if(up_or_down==1)
 	{
-		if(*input>=97 && *input<=122 && *input!='S' && !*(input+1) && data->matrice_joueur[ordonnee][abscisse]!=' ')  //letre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
+		if(*input>=97 && *input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
 				{
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
-					data->matrice_joueur[ordonnee][abscisse]=*input;
+					data->matrice_joueur[ordonnee-1][abscisse-1]=*input;   //Les -1 sont liés aux affichage des numéros de lignes et de colonnes décalants la grille
 					afficherGrille(NB_COLONNES,data->matrice_joueur);
 
 
 				}
-		else if (*input>=65 && *input<=90 && *input!='S' && !*(input+1) && data->matrice_joueur[ordonnee][abscisse]!= ' ') // lettre majuscule
+		else if (*input>=65 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
 				{
 					DrawText(input,x_milieu,y_milieu);
-					data->matrice_joueur[abscisse][ordonnee]=*input;
+					data->matrice_joueur[abscisse-1][ordonnee-1]=*input;
 		
 				}
 		else 
@@ -137,8 +137,6 @@ static void afficherErreur(void *d){
 	char *lettreFausse=malloc(sizeof(char));
 	*lettreFausse=comparaisonResulat(data);
 	
-	
-
 	SetStringEntry(data->ZoneDeVerification,lettreFausse);
 	free(lettreFausse);
 
@@ -179,4 +177,3 @@ void quit (Widget w, void *d) {
 	if(GetYesNo("Etes vous sur de vouloir quitter ?"))
 	exit(EXIT_SUCCESS);
 }
-
