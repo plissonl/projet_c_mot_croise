@@ -100,6 +100,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 }
 void quit (Widget w, void *d) {
+	if(GetYesNo("Etes vous sur de vouloir quitter ?"))
 	exit(EXIT_SUCCESS);
 }
 
