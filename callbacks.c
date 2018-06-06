@@ -48,10 +48,12 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 
 
 void selectionne(int j,int i){    // i et j représente les coordonéees matricielles
+	SetColor(BLUE);
 	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 	abscisse=j;
 	ordonnee=i;
+	SetColor(BLACK);
 
 
 }
