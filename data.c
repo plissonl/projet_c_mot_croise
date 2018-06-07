@@ -62,28 +62,30 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 
 
 void init_display(int argc ,char **argv, ValeurCourante *d){
-	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier, ZoneDeVerification, ChoixGrille, boutonSauvegarde,Grille1;//, Grille2, Grille3;
+	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier, ZoneDeVerification, ChoixGrille, boutonSauvegarde;
 	Zone_grille=MakeDrawArea(LARGEUR+LARGEUR/NB_LIGNES,HAUTEUR+HAUTEUR/NB_COLONNES, redisplay,d); 
 	boutonQuitter = MakeButton ("Quitter", quit, NULL);
 	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
 	ZoneDeVerification=MakeStringEntry(NULL,tailleZoneVerif,NULL,d);
 	ChoixGrille=MakeMenu("Choix de la grille");
 	boutonSauvegarde=MakeButton("Sauvegarder", sauvegarder, d);
-	Grille1=MakeMenuItem(ChoixGrille,"Grille 1",choix_grille1,d);
-	//Grille2=MakeMenuItem(ChoixGrille,"Grille 2",choix_grille2,d);
-	//Grille3=MakeMenuItem(ChoixGrille,"Grille 3",choix_grille3,d);
+	boutonVerifier= MakeButton("Verifier",Verifier,d);
 
-	
-	SetWidgetPos (boutonQuitter, PLACE_UNDER, Zone_grille, NO_CARE, NULL);
-	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
+	MakeMenuItem(ChoixGrille,"Grille 1",choix_grille1,d);
+	MakeMenuItem(ChoixGrille,"Grille 2",choix_grille2,d);
+	//MakeMenuItem(ChoixGrille,"Grille 3",choix_grille3,d);
 	SetButtonDownCB(Zone_grille,clique); 
 	SetKeypressCB(Zone_grille,rentrer_caractere); 
-	boutonVerifier= MakeButton("Verifier",Verifier,d);
-	SetWidgetPos(boutonSauvegarde,PLACE_UNDER,Zone_grille,PLACE_RIGHT,boutonQuitter);
-	SetWidgetPos(boutonVerifier,PLACE_UNDER,Zone_grille,PLACE_RIGHT,boutonSauvegarde);
-	SetWidgetPos(ZoneDeVerification,PLACE_RIGHT,Zone_grille,PLACE_UNDER,ZoneDefinitions);
-	SetWidgetPos(boutonVerifier,PLACE_UNDER,Zone_grille,PLACE_RIGHT,boutonVerifier);
 	setZoneVerification(ZoneDeVerification,d);
+	
+	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
+	SetWidgetPos (boutonQuitter, PLACE_RIGHT, Zone_grille, PLACE_UNDER, ZoneDefinitions);
+	SetWidgetPos(boutonSauvegarde,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonQuitter);
+	SetWidgetPos(boutonVerifier,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonSauvegarde);
+	SetWidgetPos(ZoneDeVerification,PLACE_UNDER,boutonVerifier,PLACE_RIGHT,Zone_grille);
+	SetWidgetPos(ChoixGrille,PLACE_RIGHT,Zone_grille,PLACE_UNDER,ZoneDeVerification);
+
+
 	GetStandardColors();
 
 	ShowDisplay();

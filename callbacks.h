@@ -22,6 +22,6 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *data);
 extern void quit (Widget w, void *d);
 extern void Verifier(Widget w,void *d);
 extern void choix_grille1(Widget w, void *d);
-//extern void choix_grille2(Widget w, void *d);
+extern void choix_grille2(Widget w, void *d);
 //extern void choix_grille3(Widget w, void *d);
 void sauvegarder(Widget w, void *data);

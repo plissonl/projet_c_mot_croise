@@ -193,20 +193,26 @@ void quit (Widget w, void *d) {
 
 void choix_grille1(Widget w, void *data) {
 	ValeurCourante *d=data;
-	d->NomGrille="grille1.txt";
-	d->NomDefinitions="definitions1.txt";
-	init_matrice_resultat(d);
-	init_matrice_joueur(d);
-}
-/*
-void choix_grille2(Widget w, void *data) {
-	ValeurCourante *d=data;
-	d->NomGrille="grille2.txt";
-	d->NomDefinitions="definitions2.txt";
-	init_matrice_resultat(d);
-	init_matrice_joueur(d);
+	if(GetYesNo("Etes vous sur de vouloir recommencer une partie ?")) {
+		d->NomGrille="grille1.txt";
+		d->NomDefinitions="definitions1.txt";
+		init_matrice_resultat(d);
+		init_matrice_joueur(d);
+		init_display(0, NULL,d); // on ne se sère pas de argc et argv dans la fonction
+	}
 }
 
+void choix_grille2(Widget w, void *data) {
+	ValeurCourante *d=data;
+	if(GetYesNo("Etes vous sur de vouloir recommencer une partie ?")) {
+		d->NomGrille="grille2.txt";
+		d->NomDefinitions="definitions2.txt";
+		init_matrice_resultat(d);
+		init_matrice_joueur(d);
+		init_display(0, NULL,d);
+	}
+}
+/*
 void choix_grille3(Widget w, void *data) {
 	ValeurCourante *d=data;
 	d->NomGrille="grille3.txt";
