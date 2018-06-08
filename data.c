@@ -2,6 +2,11 @@
 #include "data.h"
 #include <time.h>
 #define tailleZoneVerif 200
+#define BN_MAX 20
+
+enum description{
+	Init,DansMot,DansMotErreur, FinMot,HorsMot
+};
 
 
 void init_fichier(ValeurCourante *d) {
@@ -62,11 +67,11 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 
 
 void init_display(int argc ,char **argv, ValeurCourante *d){
-	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier,ZoneDeVerification;
+	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier;
 	Zone_grille=MakeDrawArea(LARGEUR+LARGEUR/NB_LIGNES,HAUTEUR+HAUTEUR/NB_COLONNES, redisplay,d); 
 	boutonQuitter = MakeButton ("Quitter", quit, NULL);
 	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
-	ZoneDeVerification=MakeStringEntry(NULL,tailleZoneVerif,NULL,d);
+	//ZoneDeVerification=MakeStringEntry(NULL,tailleZoneVerif,NULL,d);
 	//setZoneVerification(ZoneDeVerification,d);
 
 	
@@ -74,10 +79,10 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
 	SetButtonDownCB(Zone_grille,clique); 
 	SetKeypressCB(Zone_grille,rentrer_caractere); 
-	boutonVerifier= MakeButton("Verifier",Verifier,d);
-	SetWidgetPos(boutonVerifier,PLACE_UNDER,Zone_grille,PLACE_RIGHT,boutonQuitter);
-	SetWidgetPos(ZoneDeVerification,PLACE_RIGHT,Zone_grille,PLACE_UNDER,ZoneDefinitions);
-	setZoneVerification(ZoneDeVerification,d);
+	//boutonVerifier= MakeButton("Verifier",Verifier,d);
+	//SetWidgetPos(boutonVerifier,PLACE_UNDER,Zone_grille,PLACE_RIGHT,boutonQuitter);
+	
+	//setZoneVerification(ZoneDeVerification,d);
 	GetStandardColors();
 
 	ShowDisplay();
@@ -86,41 +91,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 
 }
 
-void setZoneVerification(Widget w, ValeurCourante *data){
-	data->ZoneDeVerification=w;
-
-}
-
-char comparaisonResulat(ValeurCourante *data){
-	//char tableau_erreur[10];
-	//int compteur_lettre=0;
-	char lettre_fausse;
-	for(int i=0;i<NB_LIGNES;i++){
-		
-		for(int j=0;j<NB_COLONNES && data->matrice_joueur[i][j]!= ' ';j++){
-			if(data->matrice_joueur[i][j]!='0'){
-				if(data->matrice_joueur[i][j]!=data->matrice_resultat[i][j]){
-					lettre_fausse=data->matrice_joueur[i][j];
-					return lettre_fausse;
-					//compteur++;
-					
-				}
-				//data->lettre_fausse=tableau_erreur;
-				//return data->lettre_fausse;
-				else{
-					return '4';
-				}
-			}
-			else {
-				return '5';
-			}
-		}
-			
-
-	}
-return '6';
-}
-
+/
 
 
 void init_matrice_joueur(ValeurCourante *data){

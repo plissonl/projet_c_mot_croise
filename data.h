@@ -18,8 +18,8 @@ typedef struct{
 } ValeurCourante;
 
 
-extern void setZoneVerification(Widget w, ValeurCourante *data);
-extern char comparaisonResulat(ValeurCourante *data);
+//extern void setZoneVerification(Widget w, ValeurCourante *data);
+//extern *char comparaisonResulat(ValeurCourante *data);
 
 
 

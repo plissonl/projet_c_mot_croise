@@ -89,7 +89,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 	if(up_or_down==1)
 	{
-		if(*input>=97 && abscisse>1 && ordonnee >1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
+		if(*input>=97 && abscisse>=1 && ordonnee >=1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
 				{
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
@@ -98,7 +98,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 
 				}
-		else if (*input>=65 && abscisse>1 && ordonnee>1 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
+		else if (*input>=65 && abscisse>=1 && ordonnee>=1 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
 				{
 					DrawText(input,x_milieu,y_milieu);
 					data->matrice_joueur[abscisse-1][ordonnee-1]=*input;
@@ -143,47 +143,6 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	}
 }
 
-static void afficherErreur(void *d){
-	char lettreFausse;
-	ValeurCourante *data=d;
-	//char *lettreFausse=malloc(sizeof(char));
-	lettreFausse=comparaisonResulat(data);
-	
-	SetStringEntry(data->ZoneDeVerification,&lettreFausse);
-	//free(lettreFausse);
-
-
-}
-
-void Verifier(Widget w,void *d){
-	afficherErreur(d);
-}
-
-
-
-/*
-
-	if(up_or_down==1 && isalpha(*input)){
-
-		*input=toupper(*input);
-		DrawText(input,x_milieu,y_milieu);
-		data->matrice_joueur[abscisse][ordonnee]=*input;
-	}
-	if (up_or_down==1 && *(input)=='U')// *(input)=='U' && *(input+1)=='p')
-	{
-		deSelectionner(abscisse,ordonnee);
-		selectionne(abscisse,ordonnee-1);
-	
-
-
-	}
-*/	
-
-/*	if(up_or_down==1 &&*input=='U' &&*(input+1)=='p'){
-		deSelectionner(abscisse,ordonnee);
-		selectionne(abscisse,ordonnee-1);
-	}
-*/
 
 void quit (Widget w, void *d) {
 	if(GetYesNo("Etes vous sur de vouloir quitter ?"))
