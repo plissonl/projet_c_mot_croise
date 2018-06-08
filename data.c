@@ -8,7 +8,7 @@ enum description{
 	Init,DansMot,DansMotErreur, FinMot,HorsMot
 };
 
-
+/*
 void init_fichier(ValeurCourante *d) {
 	int numFichier;
 	int num_min=1;
@@ -21,7 +21,7 @@ void init_fichier(ValeurCourante *d) {
 		case 3 : d->NomGrille="grille3.txt"; d->NomDefinitions="definitions3.txt"; break;
 	}
 }
-
+*/
 
 
 /* Procédure initialisant la matrice appelée matrice_resultat */
@@ -29,7 +29,7 @@ void init_matrice_resultat(ValeurCourante *d) {
 	FILE *fichier;
 	int i=0 ,j=0;
 	int c;
-	init_fichier(d);
+	//init_fichier(d);
 	if ((fichier=fopen(d->NomGrille,"r"))==NULL) {  //ouverture du fichier
 		perror(d->NomGrille);
 		exit(1);
@@ -67,22 +67,38 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 
 
 void init_display(int argc ,char **argv, ValeurCourante *d){
-	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier;
+
+	
+
+	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier, ZoneDeVerification, ChoixGrille, boutonSauvegarde;
 	Zone_grille=MakeDrawArea(LARGEUR+LARGEUR/NB_LIGNES,HAUTEUR+HAUTEUR/NB_COLONNES, redisplay,d); 
 	boutonQuitter = MakeButton ("Quitter", quit, NULL);
 	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
-	//ZoneDeVerification=MakeStringEntry(NULL,tailleZoneVerif,NULL,d);
-	//setZoneVerification(ZoneDeVerification,d);
+	ZoneDeVerification=MakeStringEntry(NULL,tailleZoneVerif,NULL,d);
+	ChoixGrille=MakeMenu("Choix de la grille");
+	boutonSauvegarde=MakeButton("Sauvegarder", sauvegarder, d);
+	boutonVerifier= MakeButton("Verifier",Verifier,d);
 
-	
-	SetWidgetPos (boutonQuitter, PLACE_UNDER, Zone_grille, NO_CARE, NULL);
-	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
+
+	MakeMenuItem(ChoixGrille,"Grille 1",choix_grille1,d);
+	MakeMenuItem(ChoixGrille,"Grille 2",choix_grille2,d);
+	//MakeMenuItem(ChoixGrille,"Grille 3",choix_grille3,d);
 	SetButtonDownCB(Zone_grille,clique); 
 	SetKeypressCB(Zone_grille,rentrer_caractere); 
-	//boutonVerifier= MakeButton("Verifier",Verifier,d);
-	//SetWidgetPos(boutonVerifier,PLACE_UNDER,Zone_grille,PLACE_RIGHT,boutonQuitter);
+
 	
-	//setZoneVerification(ZoneDeVerification,d);
+
+	
+	
+	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
+	SetWidgetPos (boutonQuitter, PLACE_RIGHT, Zone_grille, PLACE_UNDER, ZoneDefinitions);
+	SetWidgetPos(boutonSauvegarde,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonQuitter);
+	SetWidgetPos(boutonVerifier,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonSauvegarde);
+	SetWidgetPos(ZoneDeVerification,PLACE_UNDER,boutonVerifier,PLACE_RIGHT,Zone_grille);
+	SetWidgetPos(ChoixGrille,PLACE_RIGHT,Zone_grille,PLACE_UNDER,ZoneDeVerification);
+
+
+
 	GetStandardColors();
 
 	ShowDisplay();
@@ -91,7 +107,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 
 }
 
-/
+
 
 
 void init_matrice_joueur(ValeurCourante *data){

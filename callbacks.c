@@ -47,8 +47,8 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 
 
 
-void selectionne(int j,int i){    // i et j représente les coordonéees matricielles
-	SetColor(BLUE);
+void selectionne(int j,int i,int couleur){    // i et j représente les coordonéees matricielles
+	SetColor(couleur);
 	if(i>=1&& j>=1){	
 	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
@@ -74,7 +74,7 @@ void  clique(Widget w,int a,int x,int y,void *data){
 	abscisse=x/pas_ligne;
 	ordonnee=y/pas_colonne;
 
-	selectionne(abscisse,ordonnee);
+	selectionne(abscisse,ordonnee,BLUE);
 
 }
 
@@ -111,19 +111,19 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 			{
 				case 'U':	// touche Up
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse,ordonnee-1);
+					selectionne(abscisse,ordonnee-1,BLUE);
 					break;
 				case 'L': // touche Left
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse-1,ordonnee);
+					selectionne(abscisse-1,ordonnee,BLUE);
 					break;
 				case 'R'://touche right
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse+1,ordonnee);
+					selectionne(abscisse+1,ordonnee,BLUE);
 					break;
 				case 'D': //Down
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse,ordonnee+1);
+					selectionne(abscisse,ordonnee+1,BLUE);
 					break;
 				case 8: // touche backspace
 
@@ -143,8 +143,72 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	}
 }
 
+void Verifier(Widget w,void *data){
+	ValeurCourante *d=data;
+	deSelectionner(abscisse,ordonnee);
+	for(int i=0;i<NB_LIGNES;i++){
+		for(int j=0;j<NB_COLONNES;j++){
+			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
+				selectionne(j+1,i+1,RED);
+
+
+			}
+
+		}
+	}
+}
+
 
 void quit (Widget w, void *d) {
 	if(GetYesNo("Etes vous sur de vouloir quitter ?"))
 	exit(EXIT_SUCCESS);
+}
+
+
+void choix_grille1(Widget w, void *data) {
+	ValeurCourante *d=data;
+	if(GetYesNo("Etes vous sur de vouloir recommencer une partie ?")) {
+		d->NomGrille="grille1.txt";
+		d->NomDefinitions="definitions1.txt";
+		init_matrice_resultat(d);
+		init_matrice_joueur(d);
+		init_display(0, NULL,d); // on ne se sère pas de argc et argv dans la fonction
+	}
+}
+
+void choix_grille2(Widget w, void *data) {
+	ValeurCourante *d=data;
+	if(GetYesNo("Etes vous sur de vouloir recommencer une partie ?")) {
+		d->NomGrille="grille2.txt";
+		d->NomDefinitions="definitions2.txt";
+		init_matrice_resultat(d);
+		init_matrice_joueur(d);
+		init_display(0, NULL,d);
+	}
+}
+/*
+void choix_grille3(Widget w, void *data) {
+	ValeurCourante *d=data;
+	d->NomGrille="grille3.txt";
+	d->NomDefinitions="definitions3.txt";
+	init_matrice_resultat(d);
+	init_matrice_joueur(d);
+}
+*/
+
+void sauvegarder(Widget w, void *data) {
+	FILE *fichier;
+	ValeurCourante *d=data;
+	if ((fichier=fopen("save.txt","w+"))==NULL) {  //ouverture du fichier en mode ecriture et lecture en effaçant le contenu au préalable
+		perror(d->NomGrille);
+		exit(1);
+	}
+	for (int i=0; i<NB_COLONNES ; i++) {
+		for (int j=0; j<NB_LIGNES ; j++) {
+			fputc(d->matrice_joueur[i][j],fichier);
+		}
+		fputc('\n',fichier);
+	}
+
+	fclose(fichier);
 }

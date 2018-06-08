@@ -16,9 +16,11 @@ int main (int argc ,char **argv) {
 		return EXIT_FAILURE;
 	}
 
-
+	data->NomGrille="grille1.txt";
+	data->NomDefinitions="definitions1.txt";
 	init_matrice_resultat(data);
 	init_matrice_joueur(data);
+	
 	init_display(argc , argv , data);
 	
 	afficherGrille(NB_COLONNES,data->matrice_resultat);
