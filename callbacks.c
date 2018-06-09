@@ -7,15 +7,17 @@
 
 int abscisse,ordonnee; // on peut faire une structure coordonnées ,abscisse,ordonne= coordonnee matrice
 
-int pas_ligne=LARGEUR/NB_LIGNES;
-int pas_colonne=HAUTEUR/NB_COLONNES;
+int pas_ligne=LARGEUR/d->NB_LIGNES;
+int pas_colonne=HAUTEUR/d->NB_COLONNES;
 
 
 
 void  redisplay(Widget w, int width, int height, void *d){ // fcontion 
+	int pas_ligne=LARGEUR/d->NB_LIGNES;
+	int pas_colonne=HAUTEUR/d->NB_COLONNES;
 	ValeurCourante *data=d;
-	for(int i=0;i<NB_LIGNES;i++){
-		for(int j=0;j<NB_COLONNES;j++){
+	for(int i=0;i<d->NB_LIGNES;i++){
+		for(int j=0;j<d->NB_COLONNES;j++){
 
 			if(data->matrice_joueur[j][i]==' '){
 				DrawFilledBox(i*pas_ligne+pas_ligne+2,j*pas_colonne+pas_colonne+2,pas_ligne-4,pas_colonne-4);
@@ -24,20 +26,20 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 		}
 	} 
 	
-	for(int i=0;i<NB_LIGNES+1;i++){
+	for(int i=0;i<d->NB_LIGNES+1;i++){
 		DrawLine( i*pas_ligne+pas_ligne,pas_ligne,i*pas_ligne+pas_ligne,LARGEUR+pas_ligne);
 	}
 	
-	for(int i=0;i<NB_COLONNES+1;i++){
+	for(int i=0;i<d->NB_COLONNES+1;i++){
 		DrawLine(pas_colonne,i*pas_colonne+pas_colonne,HAUTEUR+pas_colonne,i*pas_colonne+pas_colonne);
 
 	}
-	for(int num_ligne=1; num_ligne<NB_LIGNES+1;num_ligne++) {
+	for(int num_ligne=1; num_ligne<d->NB_LIGNES+1;num_ligne++) {
 		char numl[3];
 		sprintf(numl,"%d",num_ligne);
 		DrawText(numl,(num_ligne+1)*pas_ligne-pas_ligne/2,pas_colonne/2);
 	}
-	for(int num_colonne=1; num_colonne<NB_COLONNES+1;num_colonne++) {
+	for(int num_colonne=1; num_colonne<d->NB_COLONNES+1;num_colonne++) {
 		char numc[3];
 		sprintf(numc,"%d",num_colonne);
 		DrawText(numc,pas_ligne/2,(num_colonne+1)*pas_colonne-pas_colonne/2);
@@ -47,8 +49,10 @@ void  redisplay(Widget w, int width, int height, void *d){ // fcontion
 
 
 
-void selectionne(int j,int i){    // i et j représente les coordonéees matricielles
-	SetColor(BLUE);
+void selectionne(int j,int i,int couleur){    // i et j représente les coordonéees matricielles
+	int pas_ligne=LARGEUR/d->NB_LIGNES;
+	int pas_colonne=HAUTEUR/d->NB_COLONNES;
+	SetColor(couleur);
 	if(i>=1&& j>=1){	
 	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
@@ -63,6 +67,8 @@ void selectionne(int j,int i){    // i et j représente les coordonéees matrici
 
 
 void deSelectionner(int j,int i){
+	int pas_ligne=LARGEUR/d->NB_LIGNES;
+	int pas_colonne=HAUTEUR/d->NB_COLONNES;
 	SetColor(WHITE);
 	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
@@ -70,11 +76,13 @@ void deSelectionner(int j,int i){
 }
 
 void  clique(Widget w,int a,int x,int y,void *data){
+	int pas_ligne=LARGEUR/d->NB_LIGNES;
+	int pas_colonne=HAUTEUR/d->NB_COLONNES;
 	deSelectionner(abscisse,ordonnee);
 	abscisse=x/pas_ligne;
 	ordonnee=y/pas_colonne;
 
-	selectionne(abscisse,ordonnee);
+	selectionne(abscisse,ordonnee,BLUE);
 
 }
 
@@ -82,6 +90,8 @@ void  clique(Widget w,int a,int x,int y,void *data){
 
 
 void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
+	int pas_ligne=LARGEUR/d->NB_LIGNES;
+	int pas_colonne=HAUTEUR/d->NB_COLONNES;
 	int x_milieu,y_milieu;
 	x_milieu=0.5*(abscisse+(abscisse+1))*pas_colonne;
 	y_milieu=0.5*(ordonnee+(ordonnee+1))*pas_ligne;
@@ -89,7 +99,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 	if(up_or_down==1)
 	{
-		if(*input>=97 && abscisse>1 && ordonnee >1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
+		if(*input>=97 && abscisse>=1 && ordonnee >=1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
 				{
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
@@ -98,7 +108,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 
 				}
-		else if (*input>=65 && abscisse>1 && ordonnee>1 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
+		else if (*input>=65 && abscisse>=1 && ordonnee>=1 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
 				{
 					DrawText(input,x_milieu,y_milieu);
 					data->matrice_joueur[abscisse-1][ordonnee-1]=*input;
@@ -111,19 +121,19 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 			{
 				case 'U':	// touche Up
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse,ordonnee-1);
+					selectionne(abscisse,ordonnee-1,BLUE);
 					break;
 				case 'L': // touche Left
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse-1,ordonnee);
+					selectionne(abscisse-1,ordonnee,BLUE);
 					break;
 				case 'R'://touche right
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse+1,ordonnee);
+					selectionne(abscisse+1,ordonnee,BLUE);
 					break;
 				case 'D': //Down
 					deSelectionner(abscisse,ordonnee);
-					selectionne(abscisse,ordonnee+1);
+					selectionne(abscisse,ordonnee+1,BLUE);
 					break;
 				case 8: // touche backspace
 
@@ -143,47 +153,21 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	}
 }
 
-static void afficherErreur(void *d){
-	char lettreFausse;
-	ValeurCourante *data=d;
-	//char *lettreFausse=malloc(sizeof(char));
-	lettreFausse=comparaisonResulat(data);
-	
-	SetStringEntry(data->ZoneDeVerification,&lettreFausse);
-	//free(lettreFausse);
+void Verifier(Widget w,void *data){
+	ValeurCourante *d=data;
+	deSelectionner(abscisse,ordonnee);
+	for(int i=0;i<d->NB_LIGNES;i++){
+		for(int j=0;j<d->NB_COLONNES;j++){
+			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
+				selectionne(j+1,i+1,RED);
 
 
+			}
+
+		}
+	}
 }
 
-void Verifier(Widget w,void *d){
-	afficherErreur(d);
-}
-
-
-
-/*
-
-	if(up_or_down==1 && isalpha(*input)){
-
-		*input=toupper(*input);
-		DrawText(input,x_milieu,y_milieu);
-		data->matrice_joueur[abscisse][ordonnee]=*input;
-	}
-	if (up_or_down==1 && *(input)=='U')// *(input)=='U' && *(input+1)=='p')
-	{
-		deSelectionner(abscisse,ordonnee);
-		selectionne(abscisse,ordonnee-1);
-	
-
-
-	}
-*/	
-
-/*	if(up_or_down==1 &&*input=='U' &&*(input+1)=='p'){
-		deSelectionner(abscisse,ordonnee);
-		selectionne(abscisse,ordonnee-1);
-	}
-*/
 
 void quit (Widget w, void *d) {
 	if(GetYesNo("Etes vous sur de vouloir quitter ?"))
@@ -232,12 +216,18 @@ void sauvegarder(Widget w, void *data) {
 		perror("save.txt");
 		exit(1);
 	}
+	switch(d->NomGrille) {
+		case "grille1.txt" : fputc("1",fichier) ; break;
+		case "grille2.txt" : fputc("2",fichier) ; break;
+		case "grille3.txt" : fputc("3",fichier) ; break;
+	}
+	fputc("\t",fichier);
 	fputc(d->NB_LIGNES,fichier);
 	fputc("\t",fichier);
 	fputc(d->NB_COLONNES,fichier);
-	fputc('\n',fichier);
-	for (int i=0; i<NB_COLONNES ; i++) {
-		for (int j=0; j<NB_LIGNES ; j++) {
+	fputc('\n',fichier);   // tout ce qu'il y a avant constitue la première ligne du fichier, contenant des informations
+	for (int i=0; i<d->NB_COLONNES ; i++) {
+		for (int j=0; j<d->NB_LIGNES ; j++) {
 			fputc(d->matrice_joueur[i][j],fichier);
 		}
 		fputc('\n',fichier);
