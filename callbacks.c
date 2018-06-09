@@ -171,23 +171,21 @@ void Verifier(Widget w,void *data){
 
 	ValeurCourante *d=data;
 	d->l=malloc(sizeof(struct noeud));
-	//d->l=NULL;
-	//initListe(d->l);
-	//d->LettreFausse->longueur=0;
-	//struct noeud *p=malloc(sizeof(struct noeud));
+	
 	struct noeud *p;
 	p=d->l;
-	//*p=*(d->LettreFausse.tete);
+	
 
 
 	deSelectionner(abscisse,ordonnee);
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
 			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
-				//p=malloc(sizeof(struct noeud));
+				
 				
 
 				p->i_erreur=i;
+				p->j_erreur=j;
 				p->suivant=malloc(sizeof(struct noeud));
 				p=p->suivant;
 				/*
@@ -224,6 +222,7 @@ void Verifier(Widget w,void *data){
 //free(d->l);
 p->suivant=NULL;
 afficherListe(d->l);
+free(d->l);
 }
 
 
