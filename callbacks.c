@@ -68,7 +68,7 @@ void deSelectionner(int j,int i){
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 	SetColor(BLACK);
 }
-
+// cette fonction permet de selectionner une case avec la souris et de séselectionner les cases en rouge correspondant aux erreurs après une modification
 void  clique(Widget w,int a,int x,int y,void *data){
 	ValeurCourante *d=data;
 	if(d->l->longueur!=0){
@@ -144,7 +144,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 		}
 		
-		if(*input>=97 && abscisse>=1 && ordonnee >=1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
+		if(abscisse>=1 && ordonnee >=1 &&*input>=97 && *input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
 				{
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
@@ -204,8 +204,6 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 void Verifier(Widget w,void *data){
 
 	ValeurCourante *d=data;
-	//d->l=malloc(sizeof(struct LISTE));
-	//d->l->tete=malloc(sizeof(struct noeud ));
 	d->l->longueur=0;
 	
 	struct noeud *p;
@@ -216,17 +214,23 @@ void Verifier(Widget w,void *data){
 	deSelectionner(abscisse,ordonnee);
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
-			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
-				d->l->longueur++;
-				//printf("la :longueur de la liste chaine est %d\n",d->l->longueur);
-				p->i_erreur=i;
-				p->j_erreur=j;
-				p->suivant=malloc(sizeof(struct noeud));
-				p=p->suivant;
-				selectionne(j+1,i+1,RED);
+			if(d->matrice_joueur[i][j]!='0' ){
+				if( d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
+					d->l->longueur++;
+					//printf("la :longueur de la liste chaine est %d\n",d->l->longueur);
+					p->i_erreur=i;
+					p->j_erreur=j;
+					p->suivant=malloc(sizeof(struct noeud));
+					p=p->suivant;
+					selectionne(j+1,i+1,RED);
 
 
 
+				}
+				else if(d->matrice_joueur[i][j]!=' '){
+					selectionne(j+1,i+1,GREEN);
+
+				}
 			}
 
 		}
