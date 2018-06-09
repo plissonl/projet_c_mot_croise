@@ -8,8 +8,10 @@
 #include "callbacks.h"
 
 
-typedef struct{
-	char matrice_joueur[NB_LIGNES][NB_COLONNES];
+typedef struct {
+	int NB_LIGNES ;
+	int NB_COLONNES ;
+	char matrice_joueur[NB_LIGNES][NB_COLONNES];  // pbm comment creer bien ta matrice si t'as pas le nombre de ligne
 	char matrice_resultat[NB_LIGNES][NB_COLONNES];
 	char* NomGrille;
 	char* NomDefinitions;
@@ -37,3 +39,5 @@ extern void init_matrice_resultat(ValeurCourante *data);
 void afficherGrille(int taille,char mat[][taille]); //affichage de test
 
 void init_fichier(ValeurCourante *d);
+
+void charger_grille(ValeurCourante *d);

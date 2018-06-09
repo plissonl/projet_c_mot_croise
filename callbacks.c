@@ -222,13 +222,20 @@ void choix_grille3(Widget w, void *data) {
 }
 */
 
+
+//ajouter un switch case pour le numéro de fichier ( case 'grille1.txt' ...)
+
 void sauvegarder(Widget w, void *data) {
 	FILE *fichier;
 	ValeurCourante *d=data;
 	if ((fichier=fopen("save.txt","w+"))==NULL) {  //ouverture du fichier en mode ecriture et lecture en effaçant le contenu au préalable
-		perror(d->NomGrille);
+		perror("save.txt");
 		exit(1);
 	}
+	fputc(d->NB_LIGNES,fichier);
+	fputc("\t",fichier);
+	fputc(d->NB_COLONNES,fichier);
+	fputc('\n',fichier);
 	for (int i=0; i<NB_COLONNES ; i++) {
 		for (int j=0; j<NB_LIGNES ; j++) {
 			fputc(d->matrice_joueur[i][j],fichier);

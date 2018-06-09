@@ -80,10 +80,10 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 	
 	SetWidgetPos (ZoneDefinitions, PLACE_RIGHT, Zone_grille, NO_CARE, NULL);
 	SetWidgetPos (boutonQuitter, PLACE_RIGHT, Zone_grille, PLACE_UNDER, ZoneDefinitions);
-	SetWidgetPos(boutonSauvegarde,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonQuitter);
-	SetWidgetPos(boutonVerifier,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonSauvegarde);
-	SetWidgetPos(ZoneDeVerification,PLACE_UNDER,boutonVerifier,PLACE_RIGHT,Zone_grille);
-	SetWidgetPos(ChoixGrille,PLACE_RIGHT,Zone_grille,PLACE_UNDER,ZoneDeVerification);
+	SetWidgetPos (boutonSauvegarde,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonQuitter);
+	SetWidgetPos (boutonVerifier,PLACE_RIGHT,Zone_grille,PLACE_UNDER,boutonSauvegarde);
+	SetWidgetPos (ZoneDeVerification,PLACE_UNDER,boutonVerifier,PLACE_RIGHT,Zone_grille);
+	SetWidgetPos (ChoixGrille,PLACE_RIGHT,Zone_grille,PLACE_UNDER,ZoneDeVerification);
 
 
 	GetStandardColors();
@@ -123,7 +123,6 @@ char comparaisonResulat(ValeurCourante *data){
 				return '5';
 			}
 		}
-			
 
 	}
 return '6';
@@ -150,5 +149,35 @@ void init_matrice_joueur(ValeurCourante *data){
 	}
 }
 
+void charger_grille(ValeurCourante *d) {
+	FILE *fichier;
+	int c;
+	int i, j = 0,0 ;
+	ValeurCourante *d=data;
+	if ((fichier=fopen("save.txt","r"))==NULL) {  //ouverture du fichier en mode lecture
+		perror("save.txt");
+		exit(1);
+	}
+	d->NB_LIGNES=fgetc(fichier);
+	c=fgetc(fichier);   // lecture du \t
+	d->NB_COLONNES=fgetc(fichier);
+	c=fgetc(fichier);	//lecture du \n 
+	while ((c=fgetc(fichier))!=EOF) { //lecture du caractère
+		if (isalpha(c) || c==' ') {
+			d->matrice_joueur[i][j]=c;
+			j++;
+		}
+		else if (c=='\n') { // si fin de ligne
+			j=0;
+			i++;
+		}
+		else {
+			printf ("erreur sur le fichier texte\n");
+			exit(1);  //possibilité d'ajout d'autres erreurs par exemple sur la longueur
+		}
+	}
+
+	fclose(fichier);
+}
 
 
