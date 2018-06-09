@@ -65,6 +65,14 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
 }
 
 
+void initListeChaine(LISTE *l,ValeurCourante *d){
+	d->l=malloc(sizeof(LISTE));
+	d->l->tete=malloc(sizeof(struct noeud ));
+	//data->l->tete=NULL;
+	d->l->longueur=0;
+
+}
+
 
 void init_display(int argc ,char **argv, ValeurCourante *d){
 

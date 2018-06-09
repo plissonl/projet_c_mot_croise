@@ -11,10 +11,10 @@ struct noeud{
 	int j_erreur;
 	struct noeud *suivant;
 };
-struct LISTE {
+typedef struct {
 	int longueur;
 	struct noeud *tete;
-};
+}LISTE;
 
 
 
@@ -26,7 +26,7 @@ typedef struct{
 
 	//char lettre_fausse;
 	Widget ZoneDeVerification;
-	struct LISTE *l;
+	LISTE *l;
 } ValeurCourante;
 
 
@@ -40,7 +40,7 @@ extern void init_display(int argc ,char **argv, ValeurCourante *d);
 
 extern void init_matrice_joueur(ValeurCourante *data);
 
-
+extern void initListeChaine(LISTE *l,ValeurCourante *d);
 
 
 /* Procédure initialisant la matrice appelée matrice_resultat et choisissant le fichier utilisé*/

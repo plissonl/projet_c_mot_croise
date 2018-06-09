@@ -9,6 +9,11 @@ int main (int argc ,char **argv) {
 
 	ValeurCourante *data;
 	data=malloc(sizeof(ValeurCourante));
+	initListeChaine(data->l,data);
+	//data->l=malloc(sizeof(LISTE));
+	//data->l->tete=malloc(sizeof(struct noeud ));
+	//data->l->tete=NULL;
+	//data->l->longueur=0;
 
 
 	if (OpenDisplay(argc , argv) == 0) {

@@ -70,6 +70,21 @@ void deSelectionner(int j,int i){
 }
 
 void  clique(Widget w,int a,int x,int y,void *data){
+	ValeurCourante *d=data;
+	if(d->l->longueur!=0){
+		//afficherListe(d->l->tete);
+		struct noeud *p;
+		p=d->l->tete;
+		for(int i=0;i<d->l->longueur;i++){
+				deSelectionner(p->j_erreur+1,p->i_erreur+1);
+				p=p->suivant;
+				printf("la chaine n'est pas vide\n");
+
+
+		}
+	d->l->longueur=0;
+
+	}
 	deSelectionner(abscisse,ordonnee);
 	abscisse=x/pas_ligne;
 	ordonnee=y/pas_colonne;
@@ -78,6 +93,29 @@ void  clique(Widget w,int a,int x,int y,void *data){
 
 }
 
+void afficherListe(struct noeud* liste)
+
+{
+
+    struct noeud *tmp = liste;
+
+    /* Tant que l'on n'est pas au bout de la liste */
+
+    while(tmp != NULL)
+
+    {
+
+        /* On affiche */
+
+        printf("l'erreur correspond a %d \n", tmp->i_erreur);
+
+        /* On avance d'une case */
+
+        tmp = tmp->suivant;
+
+    }
+
+}
 
 
 
@@ -86,10 +124,26 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	x_milieu=0.5*(abscisse+(abscisse+1))*pas_colonne;
 	y_milieu=0.5*(ordonnee+(ordonnee+1))*pas_ligne;
 	ValeurCourante *data=d;
+	
 
 
 	if(up_or_down==1)
 	{
+		if(data->l->longueur!=0){
+			afficherListe(data->l->tete);
+			struct noeud *p;
+			p=data->l->tete;
+			for(int i=0;i<data->l->longueur;i++){
+				deSelectionner(p->j_erreur+1,p->i_erreur+1);
+				p=p->suivant;
+				printf("la chaine n'est pas vide\n");
+
+
+			}
+			data->l->longueur=0;
+
+		}
+		
 		if(*input>=97 && abscisse>=1 && ordonnee >=1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
 				{
 					*input=toupper(*input);
@@ -141,38 +195,17 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 			}
 
 		}
+	
 	}
 }
-void afficherListe(struct noeud* liste)
 
-{
-
-    struct noeud *tmp = liste;
-
-    /* Tant que l'on n'est pas au bout de la liste */
-
-    while(tmp != NULL)
-
-    {
-
-        /* On affiche */
-
-        printf("l'erreur correspond a %d \n", tmp->i_erreur);
-
-        /* On avance d'une case */
-
-        tmp = tmp->suivant;
-
-    }
-
-}
 
 
 void Verifier(Widget w,void *data){
 
 	ValeurCourante *d=data;
-	d->l=malloc(sizeof(struct LISTE));
-	d->l->tete=malloc(sizeof(struct noeud ));
+	//d->l=malloc(sizeof(struct LISTE));
+	//d->l->tete=malloc(sizeof(struct noeud ));
 	d->l->longueur=0;
 	
 	struct noeud *p;
@@ -185,37 +218,11 @@ void Verifier(Widget w,void *data){
 		for(int j=0;j<NB_COLONNES;j++){
 			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
 				d->l->longueur++;
-				printf("la :longueur de la liste chaine est %d\n",d->l->longueur);
-				
-				
-
+				//printf("la :longueur de la liste chaine est %d\n",d->l->longueur);
 				p->i_erreur=i;
 				p->j_erreur=j;
 				p->suivant=malloc(sizeof(struct noeud));
 				p=p->suivant;
-
-				/*
-				d->l->longueur++;
-				
-				
-				p->i_erreur=i;
-				
-				p->j_erreur=j;
-				printf("%d %d\n",p->i_erreur, p->j_erreur);
-				p=p->suivant;
-
-				
-				d->LettreFausse.lettre.i_erreur=i;
-				d->LettreFausse.lettre.j_erreur=j;
-				d->LettreFausse.lettre=*(d->LettreFausse.lettre.suivant);
-				
-				*/
-			//	free(d->l);
-
-				
-
-
-
 				selectionne(j+1,i+1,RED);
 
 
