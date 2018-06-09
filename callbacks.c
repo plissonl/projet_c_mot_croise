@@ -21,8 +21,13 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 
 			if(d->matrice_joueur[j][i]==' '){
 				DrawFilledBox(i*pas_ligne+pas_ligne+2,j*pas_colonne+pas_colonne+2,pas_ligne-4,pas_colonne-4);
-
-			} 
+			}
+			else if(d->matrice_joueur[j][i]=='0') {
+				DrawText(" ",i*pas_ligne+pas_ligne/2,j*pas_colonne+pas_colonne/2);
+			}
+			else {
+				DrawText(d->matrice_joueur[j][i],i*pas_ligne+pas_ligne/2,j*pas_colonne+pas_colonne/2);
+			}
 		}
 	} 
 	

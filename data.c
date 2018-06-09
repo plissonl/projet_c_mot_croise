@@ -172,6 +172,7 @@ void charger_grille(ValeurCourante *d) {
 	c=fgetc(fichier);   // lecture du \t
 	d->NB_COLONNES=fgetc(fichier);
 	c=fgetc(fichier);	//lecture du \n 
+	printf("%d    %d   \n",d->NB_LIGNES,d->NB_COLONNES);
 	// allocation dynamique des tableaux de char à deux dimensions
 	// allocation du nombre de lignes
 	d->matrice_joueur=malloc(sizeof(char*)*d->NB_LIGNES);
@@ -179,7 +180,6 @@ void charger_grille(ValeurCourante *d) {
 	for (int ligne=0; ligne<d->NB_LIGNES; ligne++) {
 		d->matrice_joueur[ligne] = malloc(sizeof(char)*d->NB_COLONNES);
 	}
-
 	while ((c=fgetc(fichier))!=EOF) { //lecture du caractère
 		if (isalpha(c) || c==' ') {
 			d->matrice_joueur[i][j]=c;
@@ -190,7 +190,7 @@ void charger_grille(ValeurCourante *d) {
 			i++;
 		}
 		else {
-			printf ("erreur sur le fichier texte\n");
+			printf ("erreur sur le fichier texte save.txt\n");
 			exit(1);  //possibilité d'ajout d'autres erreurs par exemple sur la longueur
 		}
 	}
