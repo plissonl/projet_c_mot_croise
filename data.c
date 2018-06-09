@@ -34,7 +34,7 @@ void init_matrice_resultat(ValeurCourante *d) {
 		perror(d->NomGrille);
 		exit(1);
 	}
-		}
+		
 	// premiere lecture du fichier, pour trouver NB_LIGNES et NB_COLONNES
 	while ((c=fgetc(fichier))!=EOF) { //lecture du caractère
 		if (isalpha(c) || c==' ') {
@@ -52,10 +52,13 @@ void init_matrice_resultat(ValeurCourante *d) {
 	}
 	d->NB_LIGNES=i;
 	// allocation dynamique de la matrice résultat
-	d->matrice_resultat=malloc(sizeof(*char)*d->NB_LIGNES);
+	d->matrice_resultat=malloc(sizeof(char*)*d->NB_LIGNES);
 	for (int ligne=0; ligne<d->NB_LIGNES; ligne++) {
 		d->matrice_resultat[ligne] = malloc(sizeof(char)*d->NB_COLONNES);
 	}
+
+	rewind(fichier);  //on se remet au début du fichier
+	i=0;
 	while ((c=fgetc(fichier))!=EOF) { //lecture du caractère
 		if (isalpha(c) || c==' ') {
 			d->matrice_resultat[i][j]=c;
@@ -126,10 +129,10 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 }
 
 
-void init_matrice_joueur(ValeurCourante *data){
+void init_matrice_joueur(ValeurCourante *d){
 	// allocation dynamique de la matrice joueur
 	// allocation du nombre de lignes
-	d->matrice_joueur=malloc(sizeof(*char)*d->NB_LIGNES);
+	d->matrice_joueur=malloc(sizeof(char*)*d->NB_LIGNES);
 		// allocation du nombre de colonnes
 	for (int ligne=0; ligne<d->NB_LIGNES; ligne++) {
 		d->matrice_joueur[ligne] = malloc(sizeof(char)*d->NB_COLONNES);
@@ -139,13 +142,13 @@ void init_matrice_joueur(ValeurCourante *data){
 		for(int j=0;j<d->NB_COLONNES;j++){
 
 
-			if(data->matrice_resultat[i][j]==' '){
+			if(d->matrice_resultat[i][j]==' '){
 
-				data->matrice_joueur[i][j]=' ';
+				d->matrice_joueur[i][j]=' ';
 
 			}
 			else 
-				data->matrice_joueur[i][j]='0';
+				d->matrice_joueur[i][j]='0';
 
 		}
 	}
@@ -154,8 +157,7 @@ void init_matrice_joueur(ValeurCourante *data){
 void charger_grille(ValeurCourante *d) {
 	FILE *fichier;
 	int c;
-	int i, j = 0,0 ;
-	ValeurCourante *d=data;
+	int i=0, j=0 ;
 	if ((fichier=fopen("save.txt","r"))==NULL) {  //ouverture du fichier en mode lecture
 		perror("save.txt");
 		exit(1);
@@ -172,7 +174,7 @@ void charger_grille(ValeurCourante *d) {
 	c=fgetc(fichier);	//lecture du \n 
 	// allocation dynamique des tableaux de char à deux dimensions
 	// allocation du nombre de lignes
-	d->matrice_joueur=malloc(sizeof(*char)*d->NB_LIGNES);
+	d->matrice_joueur=malloc(sizeof(char*)*d->NB_LIGNES);
 	// allocation du nombre de colonnes
 	for (int ligne=0; ligne<d->NB_LIGNES; ligne++) {
 		d->matrice_joueur[ligne] = malloc(sizeof(char)*d->NB_COLONNES);

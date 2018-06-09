@@ -15,7 +15,6 @@ int main (int argc ,char **argv) {
 		fprintf(stderr ,"Can’t open  display\n");
 		return EXIT_FAILURE;
 	}
-
 	// On regarde si une sauvegarde existe, sinon, on initialise pour la grille 1
 	if ((fichier=fopen("save.txt","r"))==NULL) {   //on teste l'existence ou la bonne ouverture de de save.txt
 		data->NomGrille="grille1.txt";
@@ -32,13 +31,11 @@ int main (int argc ,char **argv) {
 	
 	init_display(argc , argv , data);
 	
-	afficherGrille(12,data->matrice_resultat);
-	afficherGrille(12,data->matrice_joueur);
-	printf("hello1\n");
+	//afficherGrille(12,data->matrice_resultat);
+	//afficherGrille(12,data->matrice_joueur);
 
 	MainLoop ();
-	printf("hello2\n");
-	afficherGrille(12,data->matrice_joueur);
+	//afficherGrille(12,data->matrice_joueur);
 	free(data);
 
 	return EXIT_SUCCESS;

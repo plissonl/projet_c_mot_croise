@@ -24,8 +24,6 @@ typedef struct {
 //extern *char comparaisonResulat(ValeurCourante *data);
 
 
-
-
 extern void init_display(int argc ,char **argv, ValeurCourante *d);
 
 extern void init_matrice_joueur(ValeurCourante *data);
