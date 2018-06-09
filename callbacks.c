@@ -142,20 +142,88 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 		}
 	}
 }
+void afficherListe(struct noeud* liste)
+
+{
+
+    struct noeud *tmp = liste;
+
+    /* Tant que l'on n'est pas au bout de la liste */
+
+    while(tmp != NULL)
+
+    {
+
+        /* On affiche */
+
+        printf("l'erreur correspond a %d \n", tmp->i_erreur);
+
+        /* On avance d'une case */
+
+        tmp = tmp->suivant;
+
+    }
+
+}
+
 
 void Verifier(Widget w,void *data){
+
 	ValeurCourante *d=data;
+	d->l=malloc(sizeof(struct noeud));
+	//d->l=NULL;
+	//initListe(d->l);
+	//d->LettreFausse->longueur=0;
+	//struct noeud *p=malloc(sizeof(struct noeud));
+	struct noeud *p;
+	p=d->l;
+	//*p=*(d->LettreFausse.tete);
+
+
 	deSelectionner(abscisse,ordonnee);
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
 			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
+				//p=malloc(sizeof(struct noeud));
+				
+
+				p->i_erreur=i;
+				p->suivant=malloc(sizeof(struct noeud));
+				p=p->suivant;
+				/*
+				d->l->longueur++;
+				
+				
+				p->i_erreur=i;
+				
+				p->j_erreur=j;
+				printf("%d %d\n",p->i_erreur, p->j_erreur);
+				p=p->suivant;
+
+				
+				d->LettreFausse.lettre.i_erreur=i;
+				d->LettreFausse.lettre.j_erreur=j;
+				d->LettreFausse.lettre=*(d->LettreFausse.lettre.suivant);
+				
+				*/
+			//	free(d->l);
+
+				
+
+
+
 				selectionne(j+1,i+1,RED);
+
 
 
 			}
 
 		}
+	
 	}
+//free(d->l);
+p->suivant=NULL;
+afficherListe(d->l);
 }
 
 

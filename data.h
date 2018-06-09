@@ -6,6 +6,16 @@
 #include<ctype.h>
 
 #include "callbacks.h"
+struct noeud{
+	int i_erreur;
+	int j_erreur;
+	struct noeud *suivant;
+};
+typedef struct {
+	int longueur;
+	struct noeud *tete;
+} LISTE;
+
 
 
 typedef struct{
@@ -13,8 +23,10 @@ typedef struct{
 	char matrice_resultat[NB_LIGNES][NB_COLONNES];
 	char* NomGrille;
 	char* NomDefinitions;
-	char lettre_fausse;
+
+	//char lettre_fausse;
 	Widget ZoneDeVerification;
+	struct noeud *l;
 } ValeurCourante;
 
 
