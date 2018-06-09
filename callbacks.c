@@ -87,6 +87,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	y_milieu=0.5*(ordonnee+(ordonnee+1))*pas_ligne;
 	ValeurCourante *data=d;
 
+
 	if(up_or_down==1)
 	{
 		if(*input>=97 && abscisse>=1 && ordonnee >=1 &&*input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
@@ -170,10 +171,12 @@ void afficherListe(struct noeud* liste)
 void Verifier(Widget w,void *data){
 
 	ValeurCourante *d=data;
-	d->l=malloc(sizeof(struct noeud));
+	d->l=malloc(sizeof(struct LISTE));
+	d->l->tete=malloc(sizeof(struct noeud ));
+	d->l->longueur=0;
 	
 	struct noeud *p;
-	p=d->l;
+	p=d->l->tete;
 	
 
 
@@ -181,6 +184,8 @@ void Verifier(Widget w,void *data){
 	for(int i=0;i<NB_LIGNES;i++){
 		for(int j=0;j<NB_COLONNES;j++){
 			if(d->matrice_joueur[i][j]!='0' && d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
+				d->l->longueur++;
+				printf("la :longueur de la liste chaine est %d\n",d->l->longueur);
 				
 				
 
@@ -188,6 +193,7 @@ void Verifier(Widget w,void *data){
 				p->j_erreur=j;
 				p->suivant=malloc(sizeof(struct noeud));
 				p=p->suivant;
+
 				/*
 				d->l->longueur++;
 				
@@ -221,8 +227,10 @@ void Verifier(Widget w,void *data){
 	}
 //free(d->l);
 p->suivant=NULL;
-afficherListe(d->l);
-free(d->l);
+afficherListe(d->l->tete);
+
+//free(d->l);
+
 }
 
 

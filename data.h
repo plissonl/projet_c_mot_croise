@@ -11,10 +11,10 @@ struct noeud{
 	int j_erreur;
 	struct noeud *suivant;
 };
-typedef struct {
+struct LISTE {
 	int longueur;
 	struct noeud *tete;
-} LISTE;
+};
 
 
 
@@ -26,7 +26,7 @@ typedef struct{
 
 	//char lettre_fausse;
 	Widget ZoneDeVerification;
-	struct noeud *l;
+	struct LISTE *l;
 } ValeurCourante;
 
 
