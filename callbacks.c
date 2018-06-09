@@ -23,7 +23,7 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 				DrawFilledBox(i*pas_ligne+pas_ligne+2,j*pas_colonne+pas_colonne+2,pas_ligne-4,pas_colonne-4);
 			}
 			else if(d->matrice_joueur[j][i]=='0') {
-				DrawText(" ",i*pas_ligne+pas_ligne/2,j*pas_colonne+pas_colonne/2);
+				DrawText(" ",i*pas_ligne+pas_ligne/2+pas_ligne,j*pas_colonne+pas_colonne/2+pas_colonne);
 			}
 			else {
 				DrawText(d->matrice_joueur[j][i],i*pas_ligne+pas_ligne/2,j*pas_colonne+pas_colonne/2);
@@ -230,6 +230,7 @@ void sauvegarder(Widget w, void *data) {
 	else if (d->NomGrille=="grille3.txt") fputc("3",fichier) ;
 
 	fputc('\t',fichier);
+	printf("%d lignes et %d colonnes\n",d->NB_LIGNES,d->NB_COLONNES);
 	fputc(d->NB_LIGNES,fichier);
 	fputc('\t',fichier);
 	fputc(d->NB_COLONNES,fichier);
