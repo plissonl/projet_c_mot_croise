@@ -3,11 +3,10 @@
 #include <libsx.h>
 #include "data.h"
 #include "callbacks.h"
-#include<io.h>
 
 
 int main (int argc ,char **argv) {
-
+	FILE *fichier;
 	ValeurCourante *data;
 	data=malloc(sizeof(ValeurCourante));
 
@@ -18,15 +17,17 @@ int main (int argc ,char **argv) {
 	}
 
 	// On regarde si une sauvegarde existe, sinon, on initialise pour la grille 1
-	if (access("save.txt",F_OK)) {  //fonction de la bibiothèque io.h permettant de tester l'existence d'un fichier (renvoi 0 si le fichier n'existe pas)
-		charger_grille(data);
-		init_matrice_resultat(data);		
-	}
-	else {
+	if ((fichier=fopen("save.txt","r"))==NULL) {   //on teste l'existence ou la bonne ouverture de de save.txt
 		data->NomGrille="grille1.txt";
 		data->NomDefinitions="definitions1.txt";
 		init_matrice_resultat(data);
 		init_matrice_joueur(data);
+	}
+	else {   // ie le fichier existe
+		fclose(fichier);
+		charger_grille(data);
+		init_matrice_resultat(data);	
+
 	}
 	
 	init_display(argc , argv , data);
