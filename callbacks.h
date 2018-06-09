@@ -5,8 +5,8 @@
 #include<libsx.h>
 
 
-# define NB_LIGNES 12
-#define NB_COLONNES 12
+//# define NB_LIGNES 12
+//#define NB_COLONNES 12
 #define LARGEUR 600
 #define HAUTEUR 600
 
