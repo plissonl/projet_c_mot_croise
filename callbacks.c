@@ -14,8 +14,8 @@ int abscisse,ordonnee; // on peut faire une structure coordonnées ,abscisse,ord
 
 void  redisplay(Widget w, int width, int height, void *data){ // fcontion 
 	ValeurCourante *d=data;
-	int pas_ligne=LARGEUR/d->NB_LIGNES;
-	int pas_colonne=HAUTEUR/d->NB_COLONNES;
+	int pas_ligne=LARGEUR/d->NB_LIGNES; /* pas_ligne correspond à la distance en pixel entre deux lignes, donc corresponds à la hauteur en pixel dune case */
+	int pas_colonne=HAUTEUR/d->NB_COLONNES; /* pas_colonne corrsponds à la largeur en pixel d'une case */ 
 	for(int i=0;i<d->NB_LIGNES;i++){
 		for(int j=0;j<d->NB_COLONNES;j++){
 
@@ -30,11 +30,12 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 			}
 		}
 	} 
-	
+	/* boucle de trace des colonnes*/
 	for(int i=0;i<d->NB_LIGNES+1;i++){
-		DrawLine( i*pas_ligne+pas_ligne,pas_ligne,i*pas_ligne+pas_ligne,LARGEUR+pas_ligne);
+
+		DrawLine(pas_colonne*(1+i),pas_ligne,pas_colonne*(1+i),HAUTEUR+pas_ligne);
 	}
-	
+	/*boucle de trace des lignes */ 
 	for(int i=0;i<d->NB_COLONNES+1;i++){
 		DrawLine(pas_colonne,i*pas_colonne+pas_colonne,HAUTEUR+pas_colonne,i*pas_colonne+pas_colonne);
 
@@ -54,25 +55,25 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 
 
 
-void selectionne(int j,int i,int couleur,void *data){    // i et j représente les coordonéees matricielles
+void selectionne(int j,int i,int couleur,void *data){    // i et j représente les coordonéees matricielles 
 	ValeurCourante *d=data;
 	int pas_ligne=LARGEUR/d->NB_LIGNES;
 	int pas_colonne=HAUTEUR/d->NB_COLONNES;
 	SetColor(couleur);
-	if(i>=1&& j>=1){	
-	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
-	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
-	abscisse=j;
-	ordonnee=i;
-	printf("%d %d\n",i,j);
+	if(i>=1&& j>=1 && i<=d->NB_LIGNES && j<=d->NB_COLONNES){	
+		DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
+		DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
+		abscisse=j;
+		ordonnee=i;
+		printf("%d %d\n",i,j);
 	}
 	SetColor(BLACK);
 
 }
 
 
-
-void deSelectionner(int j,int i,void *data){
+// cette fonction permet de de-selectionner la case en coordonnee matrcieille i et j
+void deSelectionner(int j,int i,void *data){ 
 	ValeurCourante *d=data;
 	int pas_ligne=LARGEUR/d->NB_LIGNES;
 	int pas_colonne=HAUTEUR/d->NB_COLONNES;
@@ -81,12 +82,14 @@ void deSelectionner(int j,int i,void *data){
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 	SetColor(BLACK);
 }
-// cette fonction permet de selectionner une case avec la souris et de séselectionner les cases en rouge correspondant aux erreurs après une modification
+/* cette fonction  permet de selectionner une case avec des coordonnees valides, donc dans la grille et en dehors des cases noircis à l'aide la souris,
+ et de dé-selectionner les cases en rouge correspondant aux erreurs après une verification par l'utilisateur
+ */
 void  clique(Widget w,int a,int x,int y,void *data){
 	ValeurCourante *d=data;
 	int pas_ligne=LARGEUR/d->NB_LIGNES;
 	int pas_colonne=HAUTEUR/d->NB_COLONNES;
-
+// de-selection des cases 
 	if(d->l->longueur!=0){
 		//afficherListe(d->l->tete);
 		struct noeud *p;
@@ -134,6 +137,13 @@ void afficherListe(struct noeud* liste)
 }
 
 
+/*cette fonction gere la configuration et l'utilisation du clavier 
+
+-pour des coordonnees valides, donc dans la grille l'utilisateur rentre des lettre
+-avec les fleches du clavier l'utilisateur peu selectionner une case 
+-l'utilisateur peu effacer une lettre à l'aide de la touche back-space du clavier 
+-cette fonction permet aussi de de selectionner les cases en rouge correspondant aux erreurs après verification par l'utilisateur 
+*/
 
 void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	ValeurCourante *data=d;
@@ -146,7 +156,11 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 
 	if(up_or_down==1)
+
 	{
+		/*
+		de -semection de toutes les cases contenant des erreurs, les coordonnees de ces erreurs sont contennue dans une liste chaine remplis lorsque l'utilisateur appuie sur le bouton verifier
+		*/
 		if(data->l->longueur!=0){
 			afficherListe(data->l->tete);
 			struct noeud *p;
@@ -161,8 +175,11 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 			data->l->longueur=0;
 
 		}
-		
-		if(abscisse>=1 && ordonnee >=1 &&*input>=97 && *input<=122 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!=' ')  //lettre minuscule et le second element correpond au caractere de fin de chaine de caracter donc pas Up ou Down
+		/*
+		les coordonnees sont valides, la lettre est en miniscule sont code ascii est donc compris entre 97 et 122, la taille de la chaine de carractere input est égale a 1,
+		contrairement aux entree Up, Down, Left,Right correspondant aux fleches qui sont affecté à la chaine input lors de l'utilisation des fleches par l'utilisateur.
+		*/
+		if(abscisse>=1 /*$&& abscisse<=data->NB_COLONNES */&&  ordonnee >=1 && /*ordonnee<=data->NB_LIGNES &&*/ data->matrice_joueur[ordonnee-1][abscisse-1]!=' ' &&*input>=97 && *input<=122 && !*(input+1))  
 				{
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
@@ -171,7 +188,10 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 
 				}
-		else if (*input>=65 && abscisse>=1 && ordonnee>=1 && *input<=90 && !*(input+1) && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ') // lettre majuscule
+		/*
+		l'entree est uniquement une lettre majuscule avec des coordonnées valides
+		*/
+		else if (abscisse>=1 && ordonnee>=1 && data->matrice_joueur[ordonnee-1][abscisse-1]!= ' ' && *input>=65  && *input<=90 && !*(input+1) ) // lettre majuscule
 				{
 					DrawText(input,x_milieu,y_milieu);
 					data->matrice_joueur[abscisse-1][ordonnee-1]=*input;
@@ -179,7 +199,9 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 				}
 		else 
 		{
-
+		/*
+		l'entree correcponds à l'utilisation des fleches et de la touche Back space par l'utilisateur
+		*/
 			switch(*input)
 			{
 				case 'U':	// touche Up
@@ -207,8 +229,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 					}
 
 
-					//deSelectionner(abscisse,ordonnee);
-					//selectionne(abscisse,ordonnee+1);
+					
 					break;
 				default:
 					printf("erreur sur l'entree standard\n "); // changer le message d'erreur en un widget
@@ -220,14 +241,17 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	}
 }
 
-
+/* cette fonction correspond au callback du bouton Verfier, elle permet de verifier toutes les cases remplies par l'utilisateur,
+de selectionner les cases contennant une erreur en rouge, et en vert pour les lettres valides.
+les coordonnes de ces erreurs sont stocke dans une liste chaine afin de les deselectionner lorsque l'utilisateur selectionne une case après une verification.
+*/
 
 void Verifier(Widget w,void *data){
 
 	ValeurCourante *d=data;
-
+//on initialise la longueur de la liste chainé à chaque appel de la fonction
 	d->l->longueur=0;
-	
+// p pointe sur le premier noeud de la liste chainé
 	struct noeud *p;
 	p=d->l->tete;
 	
@@ -239,7 +263,9 @@ void Verifier(Widget w,void *data){
 			if(d->matrice_joueur[i][j]!='0' ){
 				if( d->matrice_joueur[i][j]!=d->matrice_resultat[i][j]){
 					d->l->longueur++;
-					//printf("la :longueur de la liste chaine est %d\n",d->l->longueur);
+				/*le caractere de la matrice joueur à ete rentré par l'utilisateur et il est different de la grille de correction
+				on rentre les coordonee des erreurs, et on passe au second noeud
+				*/
 					p->i_erreur=i;
 					p->j_erreur=j;
 					p->suivant=malloc(sizeof(struct noeud));
@@ -250,6 +276,7 @@ void Verifier(Widget w,void *data){
 
 
 				}
+				// l'utilisateur à rentre un caractere correcte la case est selectionner en vert
 				else if(d->matrice_joueur[i][j]!=' '){
 					selectionne(j+1,i+1,GREEN,d);
 

@@ -25,9 +25,6 @@ typedef struct {
 	char **matrice_resultat;  // un tableau à deux dimensions est un pointeur sur pointeur 
 	char* NomGrille;
 	char* NomDefinitions;
-
-	//char lettre_fausse;
-	Widget ZoneDeVerification;
 	LISTE *l;
 } ValeurCourante;
 
