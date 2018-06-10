@@ -1,4 +1,4 @@
-Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou faite à coté)
+Taches à faire ( Ne pas supprimer une tache faite mais plutot marquer validé ou faite à coté)
 
 
 0- Matrice de donnée
@@ -49,7 +49,7 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 0- creer fonction initialisation fichier
 
 Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
-Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/
+
 
 - erreurs constatées
 0	- deplacement fleche que si souris dans cadre

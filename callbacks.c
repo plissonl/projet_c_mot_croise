@@ -283,7 +283,8 @@ void choix_grille1(Widget w, void *data) {
 		d->NomDefinitions="definitions1.txt";
 		init_matrice_resultat(d);
 		init_matrice_joueur(d);
-		init_display(0, NULL,d); // on ne se sère pas de argc et argv dans la fonction
+		ClearDrawArea();
+		init_display(0, NULL,d); // on ne se sert pas de argc et argv dans la fonction
 	}
 }
 
@@ -294,16 +295,21 @@ void choix_grille2(Widget w, void *data) {
 		d->NomDefinitions="definitions2.txt";
 		init_matrice_resultat(d);
 		init_matrice_joueur(d);
+		ClearDrawArea();
 		init_display(0, NULL,d);
 	}
 }
 
 void choix_grille3(Widget w, void *data) {
 	ValeurCourante *d=data;
-	d->NomGrille="grille3.txt";
-	d->NomDefinitions="definitions3.txt";
-	init_matrice_resultat(d);
-	init_matrice_joueur(d);
+	if(GetYesNo("Etes vous sur de vouloir recommencer une partie ?")) {
+		d->NomGrille="grille3.txt";
+		d->NomDefinitions="definitions3.txt";
+		init_matrice_resultat(d);
+		init_matrice_joueur(d);
+		ClearDrawArea();
+		init_display(0, NULL,d);
+	}
 }
 
 
@@ -324,7 +330,7 @@ void sauvegarder(Widget w, void *data) {
 	}
 
 	fputc('\t',fichier);
-	printf("%d lignes et %d colonnes\n",d->NB_LIGNES,d->NB_COLONNES);
+	//printf("%d lignes et %d colonnes\n",d->NB_LIGNES,d->NB_COLONNES);
 	fputc(d->NB_LIGNES,fichier);
 	fputc('\t',fichier);
 	fputc(d->NB_COLONNES,fichier);

@@ -5,21 +5,6 @@
 #define BN_MAX 20
 
 
-/*
-void init_fichier(ValeurCourante *d) {
-	int numFichier;
-	int num_min=1;
-	int num_max=1;
-	srand(time(NULL));
-	numFichier=rand()%(num_max+1-num_min)+num_min ; // on génère un entier aléatoire compris entre num_min et num_max.
-	switch(numFichier) {  // choix aléatoire de la grille de lecture
-		case 1 : d->NomGrille="grille1.txt"; d->NomDefinitions="definitions1.txt"; break;
-		case 2 : d->NomGrille="grille2.txt"; d->NomDefinitions="definitions2.txt"; break;
-		case 3 : d->NomGrille="grille3.txt"; d->NomDefinitions="definitions3.txt"; break;
-	}
-}
-*/
-
 
 /* Procédure initialisant la matrice appelée matrice_resultat */
 void init_matrice_resultat(ValeurCourante *d) {
@@ -48,6 +33,7 @@ void init_matrice_resultat(ValeurCourante *d) {
 		}
 	}
 	d->NB_LIGNES=i;
+	printf("lignes=%d  colonnes=%d \n",d->NB_LIGNES,d->NB_COLONNES );
 	// allocation dynamique de la matrice résultat
 	d->matrice_resultat=malloc(sizeof(char*)*d->NB_LIGNES);
 	for (int ligne=0; ligne<d->NB_LIGNES; ligne++) {
@@ -107,7 +93,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 
 	MakeMenuItem(ChoixGrille,"Grille 1",choix_grille1,d);
 	MakeMenuItem(ChoixGrille,"Grille 2",choix_grille2,d);
-	//MakeMenuItem(ChoixGrille,"Grille 3",choix_grille3,d);
+	MakeMenuItem(ChoixGrille,"Grille 3",choix_grille3,d);
 	SetButtonDownCB(Zone_grille,clique); 
 	SetKeypressCB(Zone_grille,rentrer_caractere); 
 
@@ -200,6 +186,6 @@ void charger_grille(ValeurCourante *d) {
 }
 
 void init_fichier(ValeurCourante *d) {
-		d->NomGrille="grille1.txt";
-		d->NomDefinitions="definitions1.txt";
+		d->NomGrille="grille3.txt";
+		d->NomDefinitions="definitions3.txt";
 }
