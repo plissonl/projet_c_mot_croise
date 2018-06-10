@@ -305,11 +305,9 @@ void Verifier(Widget w,void *data){
 		}
 	
 	}
-//free(d->l);
 p->suivant=NULL;
 afficherListe(d->l->tete);
 
-//free(d->l);
 
 }
 
@@ -361,8 +359,6 @@ void choix_grille3(Widget w, void *data) {
 
 
 
-//ajouter un switch case pour le numéro de fichier ( case 'grille1.txt' ...)
-
 void sauvegarder(Widget w, void *data) {
 	FILE *fichier;
 	ValeurCourante *d=data;
@@ -370,7 +366,6 @@ void sauvegarder(Widget w, void *data) {
 		perror("save.txt");
 		exit(1);
 	}
-	afficherGrillej(d);
 	switch(*(d->NomGrille+6)) {   // 6ème caractère de la chaine de caractère grille1.txt ie le numéro // on aurait pu utiliser strcmp pour comparer les chaînes de caractères
 		case '1' : fputc('1',fichier); break;
 		case '2' : fputc('2',fichier); break;
@@ -385,7 +380,6 @@ void sauvegarder(Widget w, void *data) {
 	for (int i=0; i<d->NB_LIGNES; i++) {
 		for (int j=0; j<d->NB_COLONNES ; j++) {
 			fputc(d->matrice_joueur[i][j],fichier);
-			printf("%c, %d\n",d->matrice_joueur[i][j],d->matrice_joueur[i][j] );
 		}
 		fputc('\n',fichier);
 	}

@@ -32,11 +32,8 @@ int main (int argc ,char **argv) {
 	
 	init_display(argc , argv , data);
 	
-	//afficherGrille(12,data->matrice_resultat);
-	//afficherGrille(12,data->matrice_joueur);
-
 	MainLoop ();
-	//afficherGrille(12,data->matrice_joueur);
+
 	free(data);
 
 	return EXIT_SUCCESS;

@@ -11,7 +11,6 @@ void init_matrice_resultat(ValeurCourante *d) {
 	FILE *fichier;
 	int i=0 ,j=0;
 	int c;
-	//init_fichier(d);
 	if ((fichier=fopen(d->NomGrille,"r"))==NULL) {  //ouverture du fichier
 		perror(d->NomGrille);
 		exit(1);
@@ -86,7 +85,6 @@ void afficherGriller(ValeurCourante *d){ //affichage de test
 void initListeChaine(ValeurCourante *d){
 	d->l=malloc(sizeof(LISTE));
 	d->l->tete=malloc(sizeof(struct noeud ));
-	//data->l->tete=NULL;
 	d->l->longueur=0;
 
 }
@@ -124,7 +122,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 	GetStandardColors();
 
 	ShowDisplay();
-	//printf("hello\n");
+
 
 
 }
