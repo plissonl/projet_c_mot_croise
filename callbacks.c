@@ -66,7 +66,7 @@ void selectionne(int j,int i,int couleur,void *data){    // i et j représente l
 	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 	abscisse=j;
 	ordonnee=i;
-	printf("%d %d\n",i,j);
+	//printf("%d %d\n",i,j);
 	}
 	SetColor(BLACK);
 
@@ -125,7 +125,7 @@ void afficherListe(struct noeud* liste)
 
         /* On affiche */
 
-        printf("l'erreur correspond a %d \n", tmp->i_erreur);
+        //printf("l'erreur correspond a %d \n", tmp->i_erreur);
 
         /* On avance d'une case */
 
@@ -156,7 +156,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 			for(int i=0;i<data->l->longueur;i++){
 				deSelectionner(p->j_erreur+1,p->i_erreur+1,data);
 				p=p->suivant;
-				printf("la chaine n'est pas vide\n");
+				//printf("la chaine n'est pas vide\n");
 
 
 			}
@@ -297,7 +297,7 @@ void choix_grille2(Widget w, void *data) {
 		init_display(0, NULL,d);
 	}
 }
-/*
+
 void choix_grille3(Widget w, void *data) {
 	ValeurCourante *d=data;
 	d->NomGrille="grille3.txt";
@@ -305,7 +305,7 @@ void choix_grille3(Widget w, void *data) {
 	init_matrice_resultat(d);
 	init_matrice_joueur(d);
 }
-*/
+
 
 
 //ajouter un switch case pour le numéro de fichier ( case 'grille1.txt' ...)

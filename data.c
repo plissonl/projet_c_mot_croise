@@ -125,7 +125,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 	GetStandardColors();
 
 	ShowDisplay();
-	printf("hello\n");
+	//printf("hello\n");
 
 
 }
