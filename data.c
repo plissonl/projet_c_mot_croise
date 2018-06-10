@@ -71,6 +71,7 @@ void init_matrice_resultat(ValeurCourante *d) {
 	fclose(fichier);
 }
 
+/*
 void afficherGrille(int taille,char mat[][taille]){ //affichage de test
     printf("\n");
     for(int i=0;i<taille;i++){
@@ -81,7 +82,7 @@ void afficherGrille(int taille,char mat[][taille]){ //affichage de test
         printf("\n");
     }
 }
-
+*/
 
 void initListeChaine(LISTE *l,ValeurCourante *d){
 	d->l=malloc(sizeof(LISTE));

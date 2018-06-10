@@ -169,7 +169,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 					*input=toupper(*input);
 					DrawText(input,x_milieu,y_milieu);
 					data->matrice_joueur[ordonnee-1][abscisse-1]=*input;   //Les -1 sont liés aux affichage des numéros de lignes et de colonnes décalants la grille
-					afficherGrille(data->NB_COLONNES,data->matrice_joueur);
+					//afficherGrille(data->NB_COLONNES,data->matrice_joueur);
 
 
 				}
