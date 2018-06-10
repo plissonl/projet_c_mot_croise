@@ -71,14 +71,14 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 
 void selectionne(int j,int i,int couleur,void *data){    // i et j représente les coordonéees matricielles 
 	ValeurCourante *d=data;
-	int pas_ligne=LARGEUR/d->NB_LIGNES;
-	int pas_colonne=HAUTEUR/d->NB_COLONNES;
+	int pas_ligne=HAUTEUR/d->NB_LIGNES;
+	int pas_colonne=LARGEUR/d->NB_COLONNES;
 	SetColor(couleur);
 
 	if(i>=1&& j>=1 && i<=d->NB_LIGNES && j<=d->NB_COLONNES){
 	/*ici les coordonnees sont donc valides*/	
-		DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
-		DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
+		DrawBox(j*pas_colonne+1,i*pas_ligne+1,pas_colonne-2,pas_ligne-2);
+		DrawBox(j*pas_colonne+2,i*pas_ligne+2,pas_colonne-4,pas_ligne-4);
 		abscisse=j;
 		ordonnee=i;
 	}
@@ -90,11 +90,11 @@ void selectionne(int j,int i,int couleur,void *data){    // i et j représente l
 // cette fonction permet de de-selectionner la case en coordonnee matrcieille i et j
 void deSelectionner(int j,int i,void *data){ 
 	ValeurCourante *d=data;
-	int pas_ligne=LARGEUR/d->NB_LIGNES;
-	int pas_colonne=HAUTEUR/d->NB_COLONNES;
+	int pas_ligne=HAUTEUR/d->NB_LIGNES;
+	int pas_colonne=LARGEUR/d->NB_COLONNES;
 	SetColor(WHITE);
-	DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
-	DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
+	DrawBox(j*pas_colonne+1,i*pas_ligne+1,pas_colonne-2,pas_ligne-2);
+	DrawBox(j*pas_colonne+2,i*pas_ligne+2,pas_colonne-4,pas_ligne-4);
 	SetColor(BLACK);
 }
 /* cette fonction  permet de selectionner une case avec des coordonnees valides, donc dans la grille et en dehors des cases noircis à l'aide la souris,
@@ -120,8 +120,8 @@ void  clique(Widget w,int a,int x,int y,void *data){
 
 	}
 	deSelectionner(abscisse,ordonnee,d);
-	abscisse=x/pas_ligne;
-	ordonnee=y/pas_colonne;
+	abscisse=x/pas_colonne;
+	ordonnee=y/pas_ligne;
 
 	selectionne(abscisse,ordonnee,BLUE,d);
 
