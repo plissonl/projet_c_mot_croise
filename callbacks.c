@@ -31,9 +31,9 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 		}
 	} 
 	/* boucle de trace des colonnes*/
-	for(int i=0;i<d->NB_LIGNES+1;i++){
+	for(int i=0;i<d->NB_COLONNES+1;i++){
 
-		DrawLine(pas_colonne*(1+i),pas_ligne,pas_colonne*(1+i),HAUTEUR+pas_ligne);
+		DrawLine( pas_colonne*(1+i),pas_ligne,i*pas_colonne+pas_colonne,HAUTEUR+pas_ligne);
 	}
 	/*boucle de trace des lignes */ 
 	for(int i=0;i<d->NB_COLONNES+1;i++){
@@ -60,7 +60,8 @@ void selectionne(int j,int i,int couleur,void *data){    // i et j représente l
 	int pas_ligne=LARGEUR/d->NB_LIGNES;
 	int pas_colonne=HAUTEUR/d->NB_COLONNES;
 	SetColor(couleur);
-	if(i>=1&& j>=1 && i<=d->NB_LIGNES && j<=d->NB_COLONNES){	
+	if(i>=1&& j>=1 && i<=d->NB_LIGNES && j<=d->NB_COLONNES){
+	/*ici les coordonnees sont donc valides*/	
 		DrawBox(j*pas_ligne+1,i*pas_colonne+1,pas_ligne-2,pas_colonne-2);
 		DrawBox(j*pas_ligne+2,i*pas_colonne+2,pas_ligne-4,pas_colonne-4);
 		abscisse=j;
