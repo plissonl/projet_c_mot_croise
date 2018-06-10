@@ -19,13 +19,12 @@ int main (int argc ,char **argv) {
 	}
 	// On regarde si une sauvegarde existe, sinon, on initialise pour la grille 1
 	if ((fichier=fopen("save.txt","r"))==NULL) {   //on teste l'existence ou la bonne ouverture de de save.txt
-		data->NomGrille="grille1.txt";
-		data->NomDefinitions="definitions1.txt";
+		init_fichier(data);
 		init_matrice_resultat(data);
 		init_matrice_joueur(data);
 	}
 	else {   // ie le fichier existe
-		fclose(fichier);
+		fclose(fichier);  // on le ferme
 		charger_grille(data);
 		init_matrice_resultat(data);	
 

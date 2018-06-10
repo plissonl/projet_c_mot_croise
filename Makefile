@@ -31,3 +31,4 @@ main.o: data.h callbacks.h
 
 clean:
 	rm -f *.o *~ core $(PROG)
+	rm save.txt

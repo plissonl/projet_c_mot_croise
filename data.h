@@ -43,9 +43,12 @@ extern void initListeChaine(LISTE *l,ValeurCourante *d);
 /* Procédure initialisant la matrice appelée matrice_resultat et choisissant le fichier utilisé*/
 extern void init_matrice_resultat(ValeurCourante *data);
 
-void afficherGrille(int taille,char mat[][taille]); //affichage de test
+void afficherGrillej(ValeurCourante *d); //affichage de test
+
+void afficherGriller(ValeurCourante *d); //affichage de test
 
 void init_fichier(ValeurCourante *d);
 
 void charger_grille(ValeurCourante *d);
 
+void init_fichier(ValeurCourante *d);
