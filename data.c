@@ -96,7 +96,7 @@ void init_display(int argc ,char **argv, ValeurCourante *d){
 
 	
 	Widget Zone_grille, boutonQuitter, ZoneDefinitions, boutonVerifier, ChoixGrille, boutonSauvegarde;
-	Zone_grille=MakeDrawArea(LARGEUR+LARGEUR/d->NB_LIGNES,HAUTEUR+HAUTEUR/d->NB_COLONNES, redisplay,d); 
+	Zone_grille=MakeDrawArea(LARGEUR+LARGEUR/d->NB_COLONNES,HAUTEUR+HAUTEUR/d->NB_LIGNES, redisplay,d); 
 	boutonQuitter = MakeButton ("Quitter", quit, NULL);
 	ZoneDefinitions = MakeTextWidget(d->NomDefinitions, TRUE, FALSE, 900, 400);
 	ChoixGrille=MakeMenu("Choix de la grille");
@@ -195,7 +195,6 @@ void charger_grille(ValeurCourante *d) {
 			exit(1);  //possibilité d'ajout d'autres erreurs par exemple sur la longueur
 		}
 	}
-
 	fclose(fichier);
 }
 

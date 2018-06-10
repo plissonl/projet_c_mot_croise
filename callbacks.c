@@ -5,7 +5,7 @@
 
 // Il faut ajouter +pas ligne et +pas colonne à chaque truc utilisant i ou j ou trouver un moyen de le faire automatiquement.
 
-int abscisse,ordonnee; // on peut faire une structure coordonnées ,abscisse,ordonne= coordonnee matrice
+int abscisse,ordonnee; // on peut faire une structure coorClearDrawArea();données ,abscisse,ordonne= coordonnee matrice
 
 //int pas_ligne=LARGEUR/d->NB_LIGNES;
 //int pas_colonne=HAUTEUR/d->NB_COLONNES;
@@ -13,7 +13,7 @@ int abscisse,ordonnee; // on peut faire une structure coordonnées ,abscisse,ord
 
 
 void  redisplay(Widget w, int width, int height, void *data){ // fcontion 
-	int nuli,nulj;
+	ClearDrawArea();
 	ValeurCourante *d=data;
 	int pas_ligne=LARGEUR/d->NB_LIGNES; /* pas_ligne correspond à la distance en pixel entre deux lignes, donc corresponds à la hauteur en pixel dune case */
 	int pas_colonne=HAUTEUR/d->NB_COLONNES; /* pas_colonne corrsponds à la largeur en pixel d'une case */ 
@@ -22,10 +22,6 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 
 			if(d->matrice_joueur[i][j]==' '){
 				DrawFilledBox(j*pas_colonne+pas_colonne+2,i*pas_ligne+pas_ligne+2,pas_colonne-4,pas_ligne-4);
-				nuli=i;
-				nulj=j;
-				printf("la derniere erreur est %d %d \n",nuli,nulj);
-
 
 			}
 			
@@ -34,7 +30,7 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 			}
 			else if(isalpha(d->matrice_joueur[i][j])){
 				char lettre[2];  
-				sprintf(lettre,"%c",d->matrice_joueur[j][i]);  //conversion du char en chaine de caractères pour le DrawText
+				sprintf(lettre,"%c",d->matrice_joueur[i][j]);  //conversion du char en chaine de caractères pour le DrawText
 				DrawText(lettre,j*pas_colonne+pas_colonne/2+pas_colonne,i*pas_ligne+pas_ligne/2+pas_ligne+3); // correspond aux x_milieu et y_milieu definis plus bas 
 			}
 			
@@ -324,7 +320,8 @@ void choix_grille1(Widget w, void *data) {
 		d->NomDefinitions="definitions1.txt";
 		init_matrice_resultat(d);
 		init_matrice_joueur(d);
-		ClearDrawArea();
+		CloseWindow();
+		MakeWindow("Grille 1",SAME_DISPLAY,NONEXCLUSIVE_WINDOW);
 		init_display(0, NULL,d); // on ne se sert pas de argc et argv dans la fonction
 	}
 }
@@ -336,7 +333,8 @@ void choix_grille2(Widget w, void *data) {
 		d->NomDefinitions="definitions2.txt";
 		init_matrice_resultat(d);
 		init_matrice_joueur(d);
-		ClearDrawArea();
+		CloseWindow();
+		MakeWindow("Grille 2",SAME_DISPLAY,NONEXCLUSIVE_WINDOW);
 		init_display(0, NULL,d);
 	}
 }
@@ -348,7 +346,8 @@ void choix_grille3(Widget w, void *data) {
 		d->NomDefinitions="definitions3.txt";
 		init_matrice_resultat(d);
 		init_matrice_joueur(d);
-		ClearDrawArea();
+		CloseWindow();
+		MakeWindow("Grille 3",SAME_DISPLAY,NONEXCLUSIVE_WINDOW);
 		init_display(0, NULL,d);
 	}
 }
@@ -364,6 +363,7 @@ void sauvegarder(Widget w, void *data) {
 		perror("save.txt");
 		exit(1);
 	}
+	afficherGrillej(d);
 	switch(*(d->NomGrille+6)) {   // 6ème caractère de la chaine de caractère grille1.txt ie le numéro // on aurait pu utiliser strcmp pour comparer les chaînes de caractères
 		case '1' : fputc('1',fichier); break;
 		case '2' : fputc('2',fichier); break;
@@ -371,14 +371,14 @@ void sauvegarder(Widget w, void *data) {
 	}
 
 	fputc('\t',fichier);
-	//printf("%d lignes et %d colonnes\n",d->NB_LIGNES,d->NB_COLONNES);
-	fputc(d->NB_LIGNES,fichier);
+	fputc(d->NB_LIGNES,fichier); 
 	fputc('\t',fichier);
 	fputc(d->NB_COLONNES,fichier);
 	fputc('\n',fichier);   // tout ce qu'il y a avant constitue la première ligne du fichier, contenant des informations
-	for (int i=0; i<d->NB_COLONNES ; i++) {
-		for (int j=0; j<d->NB_LIGNES ; j++) {
+	for (int i=0; i<d->NB_LIGNES; i++) {
+		for (int j=0; j<d->NB_COLONNES ; j++) {
 			fputc(d->matrice_joueur[i][j],fichier);
+			printf("%c, %d\n",d->matrice_joueur[i][j],d->matrice_joueur[i][j] );
 		}
 		fputc('\n',fichier);
 	}
