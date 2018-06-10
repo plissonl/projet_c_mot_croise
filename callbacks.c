@@ -29,14 +29,15 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 
 			}
 			
-			else if(d->matrice_joueur[j][i]=='0') {
-				DrawText(" ",i*pas_ligne+pas_ligne/2+pas_ligne,j*pas_colonne+pas_colonne/2+pas_colonne);
+			else if(d->matrice_joueur[i][j]=='0') {
+				DrawText(" ",j*pas_colonne+pas_colonne/2+pas_colonne,i*pas_ligne+pas_ligne/2+pas_ligne);
 			}
-			else if(isalpha(d->matrice_joueur[j][i])){
+			else if(isalpha(d->matrice_joueur[i][j])){
 				char lettre[2];  
 				sprintf(lettre,"%c",d->matrice_joueur[j][i]);  //conversion du char en chaine de caractères pour le DrawText
-				DrawText(lettre,i*pas_ligne+pas_ligne/2+pas_ligne,j*pas_colonne+pas_colonne/2+pas_colonne);
+				DrawText(lettre,j*pas_colonne+pas_colonne/2+pas_colonne,i*pas_ligne+pas_ligne/2+pas_ligne+3); // correspond aux x_milieu et y_milieu definis plus bas 
 			}
+			
 		}
 
 	} 
@@ -166,7 +167,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 	int pas_colonne=HAUTEUR/data->NB_COLONNES;
 	int x_milieu,y_milieu;
 	x_milieu=0.5*(abscisse+(abscisse+1))*pas_colonne;
-	y_milieu=0.5*(ordonnee+(ordonnee+1))*pas_ligne;
+	y_milieu=0.5*(ordonnee+(ordonnee+1))*pas_ligne+3;
 
 
 
