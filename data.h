@@ -21,11 +21,11 @@ typedef struct {
 typedef struct {
 	int NB_LIGNES ;
 	int NB_COLONNES ;
-	char **matrice_joueur;  // pbm comment creer bien ta matrice si t'as pas le nombre de ligne    =>  Reponse en utilisant un pointeur classique puis des malloc
-	char **matrice_resultat;  // un tableau à deux dimensions est un pointeur sur pointeur 
+	char **matrice_joueur;  
+	char **matrice_resultat;  // un tableau à deux dimensions se comporte comme un pointeur sur pointeur 
 	char* NomGrille;
 	char* NomDefinitions;
-	LISTE *l;
+	LISTE *l; // pointeur sur la liste chaine
 } ValeurCourante;
 
 
