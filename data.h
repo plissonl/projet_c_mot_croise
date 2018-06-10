@@ -38,8 +38,8 @@ extern void init_display(int argc ,char **argv, ValeurCourante *d);
 /*Procédure initialisant la matrice joueur avec des zeros au niveau des lettres de la matrice resultat*/
 extern void init_matrice_joueur(ValeurCourante *data);
 
-
-extern void initListeChaine(LISTE *l,ValeurCourante *d);
+/*Procédure permettant d'initialisé la liste chaine*/
+extern void initListeChaine(ValeurCourante *d);
 
 /* Procédure initialisant la matrice appelée matrice_resultat et choisissant le fichier utilisé*/
 extern void init_matrice_resultat(ValeurCourante *data);

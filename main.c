@@ -9,7 +9,7 @@ int main (int argc ,char **argv) {
 	FILE *fichier;
 	ValeurCourante *data;
 	data=malloc(sizeof(ValeurCourante));
-	initListeChaine(data->l,data);
+	initListeChaine(data);
 	
 
 

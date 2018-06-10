@@ -83,7 +83,7 @@ void afficherGriller(ValeurCourante *d){ //affichage de test
 }
 
 
-void initListeChaine(LISTE *l,ValeurCourante *d){
+void initListeChaine(ValeurCourante *d){
 	d->l=malloc(sizeof(LISTE));
 	d->l->tete=malloc(sizeof(struct noeud ));
 	//data->l->tete=NULL;

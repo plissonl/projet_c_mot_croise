@@ -13,12 +13,16 @@
 /*callback du widget ZoneGrille dessinant la grille, les cases noires, les lettres déjà presentes dans la matrice joueur*/
 void  redisplay(Widget w, int width, int height,void *d);
 
-
+/*Callback du Widget SetButtonDownCB pemettant de mettre a jours les variables globals abscisse et ordonnee, de séléctionner une case, et de déselectionner les cases érronné après vérification */
 void  clique(Widget w,int a,int x,int y,void *data);
+/* permet de rentrer une lettre dans la grille, de rentrer cette lettre dans la matrice joueur, de se déplacer avec les fleches,et ausi de déselectionner les  cases érronné après vérification */
 void rentrer_caractere(Widget w,char *input,int up_or_down, void *data);
 
 /* Callback bouton quit dont le role est de terminer l'application */
 extern void quit (Widget w, void *d);
+
+/*Callback du bouton Verifier, permet de verifier si les caractéres insérer dans la grilles sont correcte, de selectionner en rouge les erreurs, en vert les zones correcte 
+et de stocker dans une liste chaine les coordonnées des erreurs*/
 
 extern void Verifier(Widget w,void *d);
 

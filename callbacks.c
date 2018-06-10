@@ -3,33 +3,31 @@
 
 #include <ctype.h>
 
-// Il faut ajouter +pas ligne et +pas colonne à chaque truc utilisant i ou j ou trouver un moyen de le faire automatiquement.
 
-
-int abscisse,ordonnee; // on peut faire une structure coorClearDrawArea();données ,abscisse,ordonne= coordonnee matrice
-
-
-//int pas_ligne=LARGEUR/d->NB_LIGNES;
-//int pas_colonne=HAUTEUR/d->NB_COLONNES;
+int abscisse,ordonnee; 
 
 
 
-void  redisplay(Widget w, int width, int height, void *data){ // fcontion 
+/**/
+
+void  redisplay(Widget w, int width, int height, void *data){  
 	ClearDrawArea();
 	ValeurCourante *d=data;
 	int pas_ligne=LARGEUR/d->NB_LIGNES; /* pas_ligne correspond à la distance en pixel entre deux lignes, donc corresponds à la hauteur en pixel dune case */
 	int pas_colonne=HAUTEUR/d->NB_COLONNES; /* pas_colonne corrsponds à la largeur en pixel d'une case */ 
 	for(int i=0;i<d->NB_LIGNES;i++){
 		for(int j=0;j<d->NB_COLONNES;j++){
+			/*insertion des cases noirs correspondant à la séparation entre les mots*/
 
 			if(d->matrice_joueur[i][j]==' '){
 				DrawFilledBox(j*pas_colonne+pas_colonne+2,i*pas_ligne+pas_ligne+2,pas_colonne-4,pas_ligne-4);
 
 			}
 			
-			else if(d->matrice_joueur[i][j]=='0') {
+			/*else if(d->matrice_joueur[i][j]=='0') {
 				DrawText(" ",j*pas_colonne+pas_colonne/2+pas_colonne,i*pas_ligne+pas_ligne/2+pas_ligne);
-			}
+			}*/
+			/*Affichage des valeurs présentes dans la matrice joueur en cas de sauvegarde*/
 			else if(isalpha(d->matrice_joueur[i][j])){
 				char lettre[2];  
 				sprintf(lettre,"%c",d->matrice_joueur[i][j]);  //conversion du char en chaine de caractères pour le DrawText
@@ -111,21 +109,19 @@ void  clique(Widget w,int a,int x,int y,void *data){
 		for(int i=0;i<d->l->longueur;i++){
 				deSelectionner(p->j_erreur+1,p->i_erreur+1,d);
 				p=p->suivant;
-				printf("la chaine n'est pas vide\n");
-
+				
 
 		}
 	/*on réinitialise la liste chaine*/
 	free(d->l);
-	initListeChaine(d->l,d);
+	initListeChaine(d);
 
 	/*on sélectionne la nouvelle case */
 	abscisse=x/pas_colonne;
 	ordonnee=y/pas_ligne;
 
 	selectionne(abscisse,ordonnee,BLUE,d);
-	//d->l->longueur=0;
-
+	
 	}
 	else{
 		deSelectionner(abscisse,ordonnee,d);
@@ -184,7 +180,7 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 
 	{
 		/*
-		de -semection de toutes les cases contenant des erreurs, les coordonnees de ces erreurs sont contennue dans une liste chaine remplis lorsque l'utilisateur appuie sur le bouton verifier
+		de -selection de toutes les cases contenant des erreurs, les coordonnees de ces erreurs sont contennue dans une liste chaine remplis lorsque l'utilisateur appuie sur le bouton verifier
 		*/
 		if(data->l->longueur!=0){
 			afficherListe(data->l->tete);
@@ -193,11 +189,9 @@ void rentrer_caractere(Widget w,char *input,int up_or_down, void *d){
 			for(int i=0;i<data->l->longueur;i++){
 				deSelectionner(p->j_erreur+1,p->i_erreur+1,data);
 				p=p->suivant;
-				//printf("la chaine n'est pas vide\n");
-
-
 			}
-			data->l->longueur=0;
+			free(data->l);
+			initListeChaine(d);
 
 		}
 		/*
