@@ -52,3 +52,4 @@ void init_fichier(ValeurCourante *d);
 
 void charger_grille(ValeurCourante *d);
 
+void init_fichier(ValeurCourante *d);

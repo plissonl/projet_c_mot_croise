@@ -25,11 +25,13 @@ void  redisplay(Widget w, int width, int height, void *data){ // fcontion
 			else if(d->matrice_joueur[j][i]=='0') {
 				DrawText(" ",i*pas_ligne+pas_ligne/2+pas_ligne,j*pas_colonne+pas_colonne/2+pas_colonne);
 			}
-			else {
-				DrawText(d->matrice_joueur[j][i],i*pas_ligne+pas_ligne/2,j*pas_colonne+pas_colonne/2);
+			else if(isalpha(d->matrice_joueur[j][i])){
+				char lettre[2];  
+				sprintf(lettre,"%c",d->matrice_joueur[j][i]);  //conversion du char en chaine de caractères pour le DrawText
+				DrawText(lettre,i*pas_ligne+pas_ligne/2+pas_ligne,j*pas_colonne+pas_colonne/2+pas_colonne);
 			}
 		}
-	} 
+	}
 	
 	for(int i=0;i<d->NB_LIGNES+1;i++){
 		DrawLine( i*pas_ligne+pas_ligne,pas_ligne,i*pas_ligne+pas_ligne,LARGEUR+pas_ligne);
@@ -315,9 +317,11 @@ void sauvegarder(Widget w, void *data) {
 		perror("save.txt");
 		exit(1);
 	}
-	if (d->NomGrille=="grille1.txt") fputc("1",fichier) ;
-	else if (d->NomGrille=="grille2.txt") fputc("2",fichier) ;
-	else if (d->NomGrille=="grille3.txt") fputc("3",fichier) ;
+	switch(*(d->NomGrille+6)) {   // 6ème caractère de la chaine de caractère grille1.txt ie le numéro // on aurait pu utiliser strcmp pour comparer les chaînes de caractères
+		case '1' : fputc('1',fichier); break;
+		case '2' : fputc('2',fichier); break;
+		case '3' : fputc('3',fichier); break;
+	}
 
 	fputc('\t',fichier);
 	printf("%d lignes et %d colonnes\n",d->NB_LIGNES,d->NB_COLONNES);

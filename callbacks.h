@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<libsx.h>
-
+#include<string.h>
 
 //# define NB_LIGNES 12
 //#define NB_COLONNES 12

@@ -16,13 +16,13 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 0- creer fichier données initiale  (0 si rien, ' 'si case noire)
 0- creer matrice résultat
 0- 0afficher les définitions, 0les numéros de lignes, 0de colonnes, 0les cases noires.  (makeTextWidget pour les definitions) 
-- makelabel pour les règles
+0- makelabel pour les règles
 0	-> fichier definition = definitions5.txt
 0	-> fichier grille = grille5.txt
-- Bouton quitter (ajout d'une option ếtes vous sur ? (popups.doc))
-- Bouton sauvegarder ?
-	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
-- Bonton effacer case ou bonton retour en arrière (indispensable un des deux)
+0- Bouton quitter (ajout d'une option ếtes vous sur ? (popups.doc))
+0- Bouton sauvegarder ?
+0	- implique écrire la matrice donnée dans un fichier et la lire à l'ouverture, la changer à la sauvegarde, creer un bouton new qui réinitialise à zéro cette partie, et donc le fichier appeler save.txt
+0- Bonton effacer case ou bonton retour en arrière (indispensable un des deux)
 0- creer une fonction qui fait que quand on tape sur une case, on n'a pas besoin de cliquer sur la case suivante
 0	-reflechir à un moyen de choisir que la case suivante est vers le bas ou vers le haut
 0- Fonction qui empeche d'ecrire autre chose qu'une lettre (isalpha)
@@ -37,12 +37,12 @@ Taches à faire ( Ne pas supprimer un tache faite mais plutot marqué validé ou
 0- eviter de laisser toucher les cases noires
 
 
-- permettre le choix de plusieurs grilles (au moins trois)
-	-lecture aléatoire entre trois fichier
-	-int aléatoire entre 1 et nb fichier possible
-	-switch case qui dit, nomFichier="grille5.txt"
+0- permettre le choix de plusieurs grilles (au moins trois)
+0	-lecture aléatoire entre trois fichier
+0	-int aléatoire entre 1 et nb fichier possible
+0	-switch case qui dit, nomFichier="grille5.txt"
 
-- Booléen de sauvegarde faite laissant la popup si il est nul et que l'on quitte.
+0- Booléen de sauvegarde faite laissant la popup si il est nul et que l'on quitte.
 
 - faire des structures propres plutôt que des variables globales
 
@@ -52,16 +52,16 @@ Code ASCII : http://www.theasciicode.com.ar/ascii-table-characters.pdf
 Code SDL fleche : https://www.developpez.net/forums/d139421/c-cpp/c/codes-ascii-fleches-directionelles/
 
 - erreurs constatées
-	- deplacement fleche que si souris dans cadre
-	- case noire deselectionnées sans bord
-	- on ne peut plus écrire aux bordures
-	- les boutons n'apparaissent pas
+0	- deplacement fleche que si souris dans cadre
+0	- case noire deselectionnées sans bord
+0	- on ne peut plus écrire aux bordures
+0	- les boutons n'apparaissent pas
 
 
 
-- Rédiger et afficher les règles
+0- Rédiger et afficher les règles
 
-- Fonction Supprimer à finir et optimiser
+0- Fonction Supprimer à finir et optimiser
 
 grilles : http://scalion.free.fr/grilles.htm
 
