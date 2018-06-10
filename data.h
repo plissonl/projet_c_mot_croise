@@ -7,13 +7,13 @@
 
 #include "callbacks.h"
 struct noeud{
-	int i_erreur;
-	int j_erreur;
+	int i_erreur; /*Coordoonnée matricielle correspondant a la ligne pour laquel il y a une erreur */ 
+	int j_erreur; /* Coordonnee matricielle correspondant à la ligne */ 
 	struct noeud *suivant;
 };
 typedef struct {
 	int longueur;
-	struct noeud *tete;
+	struct noeud *tete; /* tete pointe vers le 1er noeud de la liste */
 }LISTE;
 
 

@@ -5,7 +5,8 @@
 
 // Il faut ajouter +pas ligne et +pas colonne à chaque truc utilisant i ou j ou trouver un moyen de le faire automatiquement.
 
-int abscisse,ordonnee; // on peut faire une structure coordonnées ,abscisse,ordonne= coordonnee matrice
+int abscisse=0;
+int ordonnee=0; // on peut faire une structure coordonnées ,abscisse,ordonne= coordonnee matrice
 
 //int pas_ligne=LARGEUR/d->NB_LIGNES;
 //int pas_colonne=HAUTEUR/d->NB_COLONNES;
@@ -105,9 +106,9 @@ void  clique(Widget w,int a,int x,int y,void *data){
 	ValeurCourante *d=data;
 	int pas_ligne=LARGEUR/d->NB_LIGNES;
 	int pas_colonne=HAUTEUR/d->NB_COLONNES;
-// de-selection des cases 
+// de-selection des cases en rouges après une verification
 	if(d->l->longueur!=0){
-		//afficherListe(d->l->tete);
+	/*ici l'utilisateur vient nécessairement de faire une vérification et sélectionne une case suivante*/ 
 		struct noeud *p;
 		p=d->l->tete;
 		for(int i=0;i<d->l->longueur;i++){
@@ -117,14 +118,25 @@ void  clique(Widget w,int a,int x,int y,void *data){
 
 
 		}
-	d->l->longueur=0;
+	/*on réinitialise la liste chaine*/
+	free(d->l);
+	initListeChaine(d->l,d);
 
-	}
-	deSelectionner(abscisse,ordonnee,d);
+	/*on sélectionne la nouvelle case */
 	abscisse=x/pas_colonne;
 	ordonnee=y/pas_ligne;
 
 	selectionne(abscisse,ordonnee,BLUE,d);
+	//d->l->longueur=0;
+
+	}
+	else{
+		deSelectionner(abscisse,ordonnee,d);
+		abscisse=x/pas_colonne;
+		ordonnee=y/pas_ligne;
+
+		selectionne(abscisse,ordonnee,BLUE,d);
+	}
 
 }
 
@@ -284,7 +296,7 @@ void Verifier(Widget w,void *data){
 				*/
 					p->i_erreur=i;
 					p->j_erreur=j;
-					p->suivant=malloc(sizeof(struct noeud));
+					p->suivant=malloc(sizeof(struct noeud)); /*on initialise l'élement suivant */
 					p=p->suivant;
 					selectionne(j+1,i+1,RED,d);
 
