@@ -200,5 +200,5 @@ void charger_grille(ValeurCourante *d) {
 
 void init_fichier(ValeurCourante *d) {
 		d->NomGrille="grille1.txt";
-		d->NomDefinitions="definitions3.txt";
+		d->NomDefinitions="definitions1.txt";
 }
